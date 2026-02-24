@@ -16,7 +16,7 @@ function sleep(ms: number): Promise<void> {
 async function downloadBook(entry: CatalogEntry): Promise<FailedDownload | null> {
   const outPath = path.join(RAW_DIR, `${entry.id}.txt`);
 
-  // Skip if already downloaded
+  //skip if already downloaded
   if (fs.existsSync(outPath)) {
     return null;
   }
@@ -78,7 +78,7 @@ async function main(): Promise<void> {
     fs.mkdirSync(RAW_DIR, { recursive: true });
   }
 
-  // Check how many already exist
+  //check how many already exist
   const existing = catalog.filter((e) => fs.existsSync(path.join(RAW_DIR, `${e.id}.txt`)));
   console.log(`  ${existing.length} already downloaded, ${catalog.length - existing.length} remaining`);
 

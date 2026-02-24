@@ -42,7 +42,7 @@ export default async function AuthorPage({ params }: Props) {
   const name = decodeURIComponent(rawName);
   const books = getBooksByAuthor(name);
 
-  // Find exact match — getBooksByAuthor does partial matching
+  //exact match — getBooksByAuthor does partial matching
   const exactBooks = books.filter(
     (b) => b.author.name.toLowerCase() === name.toLowerCase()
   );
@@ -86,7 +86,7 @@ export default async function AuthorPage({ params }: Props) {
     ],
   };
 
-  // Bio line
+  //bio line
   const lifespan =
     authorInfo.birthYear && authorInfo.deathYear
       ? ` (${authorInfo.birthYear}\u2013${authorInfo.deathYear})`
@@ -121,7 +121,7 @@ export default async function AuthorPage({ params }: Props) {
           {displayName}
         </h1>
 
-        {/* Bio line */}
+        {/*bio line*/}
         <p className="mt-2 text-stone-600 dark:text-stone-400">
           {displayName}
           {lifespan} &mdash; {matchedBooks.length}{" "}

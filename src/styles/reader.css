@@ -1,4 +1,4 @@
-/* Reader theme variables */
+/*reader theme variables*/
 .reader[data-theme="light"] {
   --reader-bg: #ffffff;
   --reader-text: #1c1917;
@@ -41,7 +41,7 @@
   --reader-btn-active-text: #1a1a2e;
 }
 
-/* Reader container */
+/*reader container*/
 .reader {
   background-color: var(--reader-bg);
   color: var(--reader-text);
@@ -55,7 +55,7 @@
   }
 }
 
-/* Font size variants */
+/*font size variants*/
 .reader[data-font-size="small"] .reader-content {
   font-size: 0.875rem;
 }
@@ -72,7 +72,7 @@
   font-size: 1.25rem;
 }
 
-/* Font family variants */
+/*font family variants*/
 .reader[data-font-family="serif"] .reader-content {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
@@ -81,7 +81,7 @@
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Reader content typography */
+/*reader content typography*/
 .reader-content {
   max-width: 65ch;
   margin-left: auto;
@@ -97,7 +97,7 @@
   margin-bottom: 0;
 }
 
-/* ALL CAPS handling — convert to elegant small-caps */
+/*ALL CAPS handling*/
 .reader-content .all-caps {
   font-variant: small-caps;
   text-transform: lowercase;
@@ -105,7 +105,7 @@
   font-size: 1.05em;
 }
 
-/* Responsive: ensure comfortable reading on phones */
+/*responsive*/
 @media (max-width: 640px) {
   .reader[data-font-size="small"] .reader-content {
     font-size: 0.9375rem;

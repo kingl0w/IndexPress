@@ -87,7 +87,7 @@ export default function ReaderControls({
       }}
     >
       <div className="mx-auto flex max-w-lg items-center justify-between gap-2 px-3 py-2 sm:gap-4 sm:px-4">
-        {/* Font size */}
+        {/*font size*/}
         <fieldset className="flex items-center gap-1" role="radiogroup" aria-label="Font size">
           <legend className="sr-only">Font size</legend>
           {FONT_SIZES.map((size) => (
@@ -108,10 +108,10 @@ export default function ReaderControls({
           ))}
         </fieldset>
 
-        {/* Divider */}
+        {/*divider*/}
         <div className="h-6 w-px" style={{ backgroundColor: "var(--reader-border)" }} />
 
-        {/* Theme */}
+        {/*theme*/}
         <fieldset className="flex items-center gap-1" role="radiogroup" aria-label="Color theme">
           <legend className="sr-only">Color theme</legend>
           {THEMES.map((t) => (
@@ -136,10 +136,10 @@ export default function ReaderControls({
           ))}
         </fieldset>
 
-        {/* Divider */}
+        {/*divider*/}
         <div className="h-6 w-px" style={{ backgroundColor: "var(--reader-border)" }} />
 
-        {/* Font family */}
+        {/*font family*/}
         <fieldset className="flex items-center gap-1" role="radiogroup" aria-label="Font family">
           <legend className="sr-only">Font family</legend>
           {FONT_FAMILIES.map((fam) => (
@@ -161,7 +161,7 @@ export default function ReaderControls({
           ))}
         </fieldset>
 
-        {/* Collapse button */}
+        {/*collapse button*/}
         <button
           onClick={() => setCollapsed(true)}
           aria-label="Minimize reading controls"

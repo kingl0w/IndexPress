@@ -12,7 +12,7 @@ function buildAllUrls(): MetadataRoute.Sitemap {
 
   const urls: MetadataRoute.Sitemap = [];
 
-  // Static pages
+  //static pages
   urls.push(
     { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
     { url: `${SITE_URL}/books`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
@@ -21,7 +21,7 @@ function buildAllUrls(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/search`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   );
 
-  // Book pages
+  //book pages
   for (const book of books) {
     urls.push({
       url: `${SITE_URL}/books/${book.slug}`,
@@ -30,7 +30,7 @@ function buildAllUrls(): MetadataRoute.Sitemap {
       priority: 0.8,
     });
 
-    // Chapter pages
+    //chapter pages
     const fullBook = getBookBySlug(book.slug);
     if (fullBook) {
       for (const chapter of fullBook.chapters) {
@@ -44,7 +44,7 @@ function buildAllUrls(): MetadataRoute.Sitemap {
     }
   }
 
-  // Author pages
+  //author pages
   for (const author of authors) {
     urls.push({
       url: `${SITE_URL}/authors/${encodeURIComponent(author)}`,
@@ -54,7 +54,7 @@ function buildAllUrls(): MetadataRoute.Sitemap {
     });
   }
 
-  // Subject pages
+  //subject pages
   for (const subject of subjects) {
     urls.push({
       url: `${SITE_URL}/subjects/${encodeURIComponent(subject)}`,

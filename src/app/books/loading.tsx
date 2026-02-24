@@ -1,11 +1,11 @@
 export default function BooksLoading() {
   return (
     <div className="animate-pulse">
-      {/* Header skeleton */}
+      {/*header skeleton*/}
       <div className="h-9 w-56 rounded bg-stone-200 dark:bg-stone-700" />
       <div className="mt-3 h-5 w-72 rounded bg-stone-200 dark:bg-stone-700" />
 
-      {/* Filter bar skeleton */}
+      {/*filter bar skeleton*/}
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <div className="h-10 flex-1 rounded-lg bg-stone-200 dark:bg-stone-700" />
         <div className="h-10 w-36 rounded-lg bg-stone-200 dark:bg-stone-700" />
@@ -13,7 +13,7 @@ export default function BooksLoading() {
         <div className="h-10 w-36 rounded-lg bg-stone-200 dark:bg-stone-700" />
       </div>
 
-      {/* Grid skeleton */}
+      {/*grid skeleton*/}
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {Array.from({ length: 12 }).map((_, i) => (
           <div

@@ -34,7 +34,6 @@ export default function Pagination({
     return qs ? `${pathname}?${qs}` : pathname;
   }
 
-  // Build page numbers to show: always show first, last, current, and neighbors
   const pages: (number | "ellipsis")[] = [];
   for (let i = 1; i <= totalPages; i++) {
     if (
@@ -55,7 +54,7 @@ export default function Pagination({
       </p>
 
       <div className="flex items-center gap-1">
-        {/* Previous */}
+        {/*previous*/}
         {currentPage > 1 ? (
           <Link
             href={buildHref(currentPage - 1)}
@@ -70,7 +69,7 @@ export default function Pagination({
           </span>
         )}
 
-        {/* Page numbers */}
+        {/*page numbers*/}
         {pages.map((page, i) =>
           page === "ellipsis" ? (
             <span
@@ -96,7 +95,7 @@ export default function Pagination({
           )
         )}
 
-        {/* Next */}
+        {/*next*/}
         {currentPage < totalPages ? (
           <Link
             href={buildHref(currentPage + 1)}

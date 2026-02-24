@@ -28,7 +28,7 @@ function CatalogBrowserInner({ books, subjects, authors }: CatalogBrowserProps) 
   const filtered = useMemo(() => {
     let result = books;
 
-    // Text filter
+    //text filter
     if (query) {
       const q = query.toLowerCase();
       result = result.filter(
@@ -39,7 +39,7 @@ function CatalogBrowserInner({ books, subjects, authors }: CatalogBrowserProps) 
       );
     }
 
-    // Subject filter
+    //subject filter
     if (subject) {
       const s = subject.toLowerCase();
       result = result.filter((b) =>
@@ -47,12 +47,12 @@ function CatalogBrowserInner({ books, subjects, authors }: CatalogBrowserProps) 
       );
     }
 
-    // Author filter
+    //author filter
     if (author) {
       result = result.filter((b) => b.author.name === author);
     }
 
-    // Sort
+    //sort
     result = [...result].sort((a, b) => {
       switch (sort) {
         case "title-desc":

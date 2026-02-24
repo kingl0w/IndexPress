@@ -85,7 +85,7 @@ export default function SearchBar() {
     [showSuggestions, suggestions, activeSuggestion, router]
   );
 
-  // Close suggestions when clicking outside
+  //close suggestions when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (
@@ -99,7 +99,7 @@ export default function SearchBar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Listen for the global focus event from SearchHotkey
+  //listen for global focus event from SearchHotkey
   useEffect(() => {
     const handler = () => {
       inputRef.current?.focus();
@@ -183,7 +183,7 @@ export default function SearchBar() {
         )}
       </form>
 
-      {/* Suggestions dropdown */}
+      {/*suggestions dropdown*/}
       {showSuggestions && suggestions.length > 0 && (
         <ul
           id="search-suggestions"

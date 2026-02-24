@@ -33,7 +33,7 @@ async function deleteCollectionIfExists(name: string): Promise<void> {
   } catch (err: unknown) {
     const error = err as { httpStatus?: number };
     if (error.httpStatus === 404) {
-      // Collection doesn't exist — that's fine
+      //collection doesn't exist
     } else {
       throw err;
     }
@@ -173,7 +173,7 @@ async function indexChapters(books: BookMeta[]): Promise<number> {
     }
   }
 
-  // Flush remaining batch
+  //flush remaining batch
   if (batch.length > 0) {
     const results = await client
       .collections<ChapterDocument>("chapters")
@@ -202,7 +202,6 @@ async function main(): Promise<void> {
     `Indexing ${useSample ? "sample" : "production"} data into Typesense at ${TYPESENSE_PROTOCOL}://${TYPESENSE_HOST}:${TYPESENSE_PORT}\n`
   );
 
-  // Check Typesense health
   try {
     const health = await client.health.retrieve();
     console.log(`Typesense health: ${health.ok ? "OK" : "NOT OK"}\n`);
@@ -212,7 +211,6 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  // Delete and recreate collections
   console.log("Preparing collections...");
   await deleteCollectionIfExists("chapters");
   await deleteCollectionIfExists("books");
@@ -221,21 +219,17 @@ async function main(): Promise<void> {
   await client.collections().create(chaptersSchema);
   console.log('  Created "chapters" collection');
 
-  // Load book index
   const books = loadBookIndex();
   console.log(`\nFound ${books.length} books\n`);
 
-  // Index books
   console.log("Indexing books...");
   const booksIndexed = await indexBooks(books);
   console.log(`  Done: ${booksIndexed} books indexed\n`);
 
-  // Index chapters
   console.log("Indexing chapters...");
   const chaptersIndexed = await indexChapters(books);
   console.log(`  Done: ${chaptersIndexed} chapters indexed\n`);
 
-  // Summary
   console.log("=== Summary ===");
   console.log(`  Books indexed:    ${booksIndexed}`);
   console.log(`  Chapters indexed: ${chaptersIndexed}`);

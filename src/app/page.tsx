@@ -4,7 +4,6 @@ import { formatAuthorName, SITE_NAME, SITE_URL } from "@/lib/utils";
 import type { BookMeta } from "../../lib/types";
 
 function pickFeatured(books: BookMeta[], count: number): BookMeta[] {
-  // Deterministic selection: sort by id and take evenly spaced picks
   const sorted = [...books].sort((a, b) => a.id - b.id);
   if (sorted.length <= count) return sorted;
   const step = sorted.length / count;
@@ -53,7 +52,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero */}
+      {/*hero*/}
       <section className="py-12 text-center sm:py-20">
         <h1 className="text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-5xl">
           Classic Literature,
@@ -80,7 +79,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/*stats*/}
       <section
         aria-label="Library statistics"
         className="grid grid-cols-3 gap-4 rounded-xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900 sm:p-8"
@@ -105,7 +104,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Books */}
+      {/*featured books*/}
       <section className="mt-16">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
@@ -140,7 +139,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Subject Categories */}
+      {/*subject categories*/}
       <section className="mt-16">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
@@ -171,7 +170,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Search CTA */}
+      {/*search CTA*/}
       <section className="mt-16 mb-8 rounded-xl bg-stone-900 p-8 text-center dark:bg-stone-800">
         <h2 className="text-2xl font-bold text-white">
           Find Your Next Read

@@ -188,7 +188,6 @@ export default function SearchPageClient() {
     }
   }, []);
 
-  // Execute search on initial load if there's a query param
   useEffect(() => {
     if (initialQuery) {
       executeBooksSearch(initialQuery);
@@ -196,7 +195,7 @@ export default function SearchPageClient() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Focus input on mount
+  //focus input on mount
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -221,7 +220,7 @@ export default function SearchPageClient() {
           executeBooksSearch(value);
         }, 300);
       }
-      // For fulltext, don't search on every keystroke
+      //fulltext searches on enter only
     },
     [activeTab, executeBooksSearch, router, searchParams]
   );
@@ -243,7 +242,6 @@ export default function SearchPageClient() {
         if (tab === "catalog") {
           executeBooksSearch(query);
         }
-        // Don't auto-search fulltext on tab switch — user should press Enter
       }
     },
     [query, executeBooksSearch]
@@ -290,7 +288,7 @@ export default function SearchPageClient() {
     [activeIndex, activeTab, currentResults, router, handleFulltextSubmit]
   );
 
-  // Scroll active result into view
+  //scroll active result into view
   useEffect(() => {
     if (activeIndex >= 0 && resultsRef.current) {
       const activeEl = resultsRef.current.querySelector(
@@ -305,7 +303,7 @@ export default function SearchPageClient() {
 
   return (
     <>
-      {/* Search input */}
+      {/*search input*/}
       <div className="relative" onKeyDown={handleKeyDown}>
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
@@ -366,7 +364,7 @@ export default function SearchPageClient() {
         )}
       </div>
 
-      {/* Tabs */}
+      {/*tabs*/}
       <div
         className="flex gap-1 mt-4 border-b border-stone-200 dark:border-stone-700"
         role="tablist"
@@ -397,14 +395,14 @@ export default function SearchPageClient() {
         </button>
       </div>
 
-      {/* Results area */}
+      {/*results area*/}
       <div
         ref={resultsRef}
         id="search-results"
         role="listbox"
         className="mt-4 space-y-3"
       >
-        {/* Error state */}
+        {/*error state*/}
         {error && (
           <div className="text-center py-8 px-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950">
             <p className="text-red-600 dark:text-red-400">{error}</p>
@@ -414,7 +412,7 @@ export default function SearchPageClient() {
           </div>
         )}
 
-        {/* Search stats */}
+        {/*search stats*/}
         {!error && hasQuery && !isSearching && currentResults.length > 0 && (
           <p className="text-sm text-stone-500 dark:text-stone-400">
             {totalFound.toLocaleString()} result
@@ -422,10 +420,10 @@ export default function SearchPageClient() {
           </p>
         )}
 
-        {/* Loading state */}
+        {/*loading state*/}
         {isSearching && <LoadingSkeleton />}
 
-        {/* Book results */}
+        {/*book results*/}
         {!isSearching &&
           !error &&
           hasQuery &&
@@ -441,7 +439,7 @@ export default function SearchPageClient() {
             </div>
           ))}
 
-        {/* Chapter results */}
+        {/*chapter results*/}
         {!isSearching &&
           !error &&
           hasQuery &&
@@ -457,7 +455,7 @@ export default function SearchPageClient() {
             </div>
           ))}
 
-        {/* Fulltext pagination */}
+        {/*fulltext pagination*/}
         {!isSearching &&
           !error &&
           activeTab === "fulltext" &&
@@ -483,7 +481,7 @@ export default function SearchPageClient() {
             </div>
           )}
 
-        {/* Empty state */}
+        {/*empty state*/}
         {!isSearching && !error && hasQuery && currentResults.length === 0 && (
           <div className="text-center py-12">
             <p className="text-stone-500 dark:text-stone-400 text-lg">
@@ -495,7 +493,7 @@ export default function SearchPageClient() {
           </div>
         )}
 
-        {/* Fulltext hint */}
+        {/*fulltext hint*/}
         {!isSearching &&
           !error &&
           activeTab === "fulltext" &&
@@ -509,7 +507,7 @@ export default function SearchPageClient() {
             </div>
           )}
 
-        {/* No query state */}
+        {/*no query state*/}
         {!hasQuery && !isSearching && !error && (
           <div className="text-center py-12">
             <p className="text-stone-400 dark:text-stone-500">

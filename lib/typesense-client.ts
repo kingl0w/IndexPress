@@ -1,7 +1,7 @@
 import Typesense from "typesense";
 import type { SearchClient } from "typesense";
 
-// --- Types ---
+//--- types ---
 
 export interface BookSearchResult {
   slug: string;
@@ -34,7 +34,7 @@ export interface SearchResult<T> {
   searchTimeMs: number;
 }
 
-// --- Typesense document schemas ---
+//--- typesense document schemas ---
 
 interface BookDoc {
   id: string;
@@ -60,7 +60,7 @@ interface ChapterDoc {
   word_count: number;
 }
 
-// --- Client singleton ---
+//--- client singleton ---
 
 let _client: SearchClient | null = null;
 
@@ -81,7 +81,7 @@ function getClient(): SearchClient {
   return _client;
 }
 
-// --- Search functions ---
+//--- search functions ---
 
 export async function searchBooks(
   query: string,

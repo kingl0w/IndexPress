@@ -39,7 +39,6 @@ export default function SubjectsPage() {
   const books = getAllBooks();
   const subjects = getAllSubjects();
 
-  // Count books per subject
   const subjectCounts = new Map<string, number>();
   for (const book of books) {
     for (const subject of book.subjects) {
@@ -47,7 +46,6 @@ export default function SubjectsPage() {
     }
   }
 
-  // Default sort: most books first
   const sorted = [...subjects].sort(
     (a, b) => (subjectCounts.get(b) ?? 0) - (subjectCounts.get(a) ?? 0)
   );

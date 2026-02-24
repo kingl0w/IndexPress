@@ -17,7 +17,6 @@ export default function AuthorsPage() {
   const books = getAllBooks();
   const authors = getAllAuthors();
 
-  // Count books per author
   const authorCounts = new Map<string, number>();
   for (const book of books) {
     authorCounts.set(
@@ -26,7 +25,7 @@ export default function AuthorsPage() {
     );
   }
 
-  // Group by first letter (of the raw name, which is "Last, First")
+  //group by first letter (raw name is "last, first")
   const grouped = new Map<string, string[]>();
   for (const author of authors) {
     const letter = author[0].toUpperCase();
@@ -48,7 +47,7 @@ export default function AuthorsPage() {
         </p>
       </div>
 
-      {/* Letter jump navigation */}
+      {/*letter jump navigation*/}
       <nav
         aria-label="Jump to letter"
         className="mb-8 flex flex-wrap gap-1"
@@ -64,7 +63,7 @@ export default function AuthorsPage() {
         ))}
       </nav>
 
-      {/* Authors grouped by letter */}
+      {/*authors grouped by letter*/}
       <div className="space-y-10">
         {letters.map((letter) => {
           const group = grouped.get(letter)!;

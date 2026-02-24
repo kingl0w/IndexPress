@@ -13,7 +13,6 @@ export default function SearchHotkey() {
         e.preventDefault();
 
         if (pathname === "/search") {
-          // Already on search page, focus the input
           window.dispatchEvent(new CustomEvent("focus-search-bar"));
           const searchInput = document.querySelector<HTMLInputElement>(
             'input[type="search"]'

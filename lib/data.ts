@@ -7,7 +7,7 @@ const DATA_DIR = path.join(process.cwd(), useSample ? "data/sample" : "data");
 const INDEX_PATH = path.join(DATA_DIR, "book-index.json");
 const PROCESSED_DIR = path.join(DATA_DIR, "processed");
 
-// Simple in-memory cache
+//simple in-memory cache
 const cache = new Map<string, unknown>();
 
 function getCached<T>(key: string, loader: () => T): T {

@@ -29,10 +29,7 @@ interface ReaderViewProps {
   nextChapter: number | null;
 }
 
-/**
- * Detect ALL-CAPS words (3+ consecutive uppercase letters) and wrap in spans.
- * Preserves mixed-case and short words like "I" or "A".
- */
+//detect ALL-CAPS words (3+ uppercase letters) and wrap in spans
 function renderParagraph(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   // Match sequences of 3+ uppercase letters (possibly with spaces between words)
@@ -78,17 +75,16 @@ function ReaderViewInner({
   const theme = (searchParams.get("theme") as Theme) || "light";
   const fontFamily = (searchParams.get("family") as FontFamily) || "serif";
 
-  // Focus the chapter title on mount (for accessibility when navigating chapters)
+  //focus chapter title on mount
   useEffect(() => {
     titleRef.current?.focus();
   }, [chapter.number]);
 
-  // Scroll to top on chapter change
+  //scroll to top on chapter change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [chapter.number]);
 
-  // Split content into paragraphs
   const paragraphs = chapter.content
     .split(/\n\n+/)
     .map((p) => p.trim())
@@ -103,19 +99,19 @@ function ReaderViewInner({
     >
       <ReadingProgress contentRef={contentRef} />
 
-      {/* Announce chapter changes for screen readers */}
+      {/*screen reader announcement*/}
       <div aria-live="polite" className="sr-only">
         {chapter.title} of {bookTitle}
       </div>
 
       <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 sm:px-6">
-        {/* Book info (subtle) */}
+        {/*book info*/}
         <div className="mb-6 text-center" style={{ color: "var(--reader-text-muted)" }}>
           <p className="text-sm">{bookTitle}</p>
           <p className="text-xs">{authorName}</p>
         </div>
 
-        {/* Chapter title */}
+        {/*chapter title*/}
         <h1
           ref={titleRef}
           tabIndex={-1}
@@ -125,10 +121,10 @@ function ReaderViewInner({
           {chapter.title}
         </h1>
 
-        {/* Chapter content */}
+        {/*chapter content*/}
         <article ref={contentRef} className="reader-content" aria-label="Chapter content">
           {paragraphs.map((paragraph, i) => {
-            // Handle paragraphs that contain line breaks (poetry, etc.)
+            //handle line breaks (poetry, etc.)
             const lines = paragraph.split("\n");
             if (lines.length > 1) {
               return (
@@ -146,7 +142,7 @@ function ReaderViewInner({
           })}
         </article>
 
-        {/* Word count */}
+        {/*word count*/}
         <p
           className="mt-8 text-center text-xs"
           style={{ color: "var(--reader-text-muted)" }}
@@ -154,7 +150,7 @@ function ReaderViewInner({
           {chapter.wordCount.toLocaleString()} words
         </p>
 
-        {/* Chapter navigation */}
+        {/*chapter navigation*/}
         <ChapterNav
           bookSlug={bookSlug}
           currentChapter={chapter.number}
@@ -165,7 +161,7 @@ function ReaderViewInner({
         />
       </div>
 
-      {/* Reader controls */}
+      {/*reader controls*/}
       <Suspense>
         <ReaderControls
           fontSize={fontSize}

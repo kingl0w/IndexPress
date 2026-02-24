@@ -27,11 +27,11 @@ interface GutendexBook {
 }
 
 function getPlainTextUrl(formats: Record<string, string>): string | null {
-  // Prefer UTF-8 charset
+  //prefer UTF-8 charset
   for (const [mime, url] of Object.entries(formats)) {
     if (mime === "text/plain; charset=utf-8") return url;
   }
-  // Fall back to any text/plain
+  //fall back to any text/plain
   for (const [mime, url] of Object.entries(formats)) {
     if (mime.startsWith("text/plain")) return url;
   }
@@ -42,7 +42,7 @@ function toEntry(book: GutendexBook): CatalogEntry | null {
   const downloadUrl = getPlainTextUrl(book.formats);
   if (!downloadUrl) return null;
 
-  // Skip non-English
+  //skip non-english
   if (!book.languages.includes("en")) return null;
 
   const author = book.authors[0] ?? { name: "Unknown", birth_year: null, death_year: null };

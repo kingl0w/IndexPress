@@ -45,7 +45,7 @@ export default function FilterBar({
           params.set(key, value);
         }
       }
-      // Reset page when filters change
+      //reset page when filters change
       params.delete("page");
       const qs = params.toString();
       router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
@@ -53,7 +53,7 @@ export default function FilterBar({
     [router, pathname, searchParams]
   );
 
-  // Close author dropdown on outside click
+  //close author dropdown on outside click
   useEffect(() => {
     if (!authorOpen) return;
     function onClick(e: MouseEvent) {
@@ -76,9 +76,9 @@ export default function FilterBar({
 
   return (
     <div className="space-y-4">
-      {/* Filter controls row */}
+      {/*filter controls row*/}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        {/* Search input */}
+        {/*search input*/}
         <div className="relative flex-1">
           <svg
             className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
@@ -105,7 +105,7 @@ export default function FilterBar({
           />
         </div>
 
-        {/* Subject dropdown */}
+        {/*subject dropdown*/}
         <select
           value={currentSubject}
           onChange={(e) => updateParams({ subject: e.target.value || null })}
@@ -120,7 +120,7 @@ export default function FilterBar({
           ))}
         </select>
 
-        {/* Author dropdown (searchable) */}
+        {/*author dropdown*/}
         <div ref={authorRef} className="relative">
           <button
             onClick={() => setAuthorOpen(!authorOpen)}
@@ -201,7 +201,7 @@ export default function FilterBar({
           )}
         </div>
 
-        {/* Sort */}
+        {/*sort*/}
         <select
           value={currentSort}
           onChange={(e) => updateParams({ sort: e.target.value })}
@@ -216,7 +216,7 @@ export default function FilterBar({
         </select>
       </div>
 
-      {/* Active filter chips */}
+      {/*active filter chips*/}
       {activeFilters.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs text-stone-500 dark:text-stone-400">

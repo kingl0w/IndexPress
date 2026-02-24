@@ -116,9 +116,9 @@ export default async function BookPage({ params }: Props) {
       />
 
       <article>
-        {/* Hero: cover + info */}
+        {/*hero*/}
         <div className="flex flex-col gap-8 sm:flex-row">
-          {/* CSS-only book cover */}
+          {/*CSS-only book cover*/}
           <div className="shrink-0 self-start">
             <div
               className={`flex aspect-[2/3] w-44 flex-col justify-between rounded-lg bg-gradient-to-br ${gradientClass} p-5 shadow-lg sm:w-48`}
@@ -138,7 +138,7 @@ export default async function BookPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Book info */}
+          {/*book info*/}
           <div className="min-w-0 flex-1">
             <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100 sm:text-4xl">
               {book.title}
@@ -210,7 +210,7 @@ export default async function BookPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Table of Contents */}
+        {/*table of contents*/}
         <section className="mt-12">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
             Table of Contents
@@ -239,7 +239,7 @@ export default async function BookPage({ params }: Props) {
           </nav>
         </section>
 
-        {/* Previous / Next book */}
+        {/*previous / next book*/}
         {(prev || next) && (
           <nav
             aria-label="Browse more books"

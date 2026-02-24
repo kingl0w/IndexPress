@@ -41,7 +41,7 @@ export default function ChapterNav({
     [bookSlug, searchParams]
   );
 
-  // Keyboard navigation
+  //keyboard navigation
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       const target = e.target as HTMLElement;
@@ -58,7 +58,7 @@ export default function ChapterNav({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [router, prevChapter, nextChapter, buildHref]);
 
-  // Swipe gestures
+  //swipe gestures
   useEffect(() => {
     function onTouchStart(e: TouchEvent) {
       touchStartX.current = e.touches[0].clientX;
@@ -69,7 +69,6 @@ export default function ChapterNav({
       const dx = e.changedTouches[0].clientX - touchStartX.current;
       const dy = e.changedTouches[0].clientY - touchStartY.current;
 
-      // Only trigger if horizontal distance > 60px and more horizontal than vertical
       if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
 
       if (dx > 0 && prevChapter) {
@@ -87,7 +86,7 @@ export default function ChapterNav({
     };
   }, [router, prevChapter, nextChapter, buildHref]);
 
-  // Close drawer on escape
+  //close drawer on escape
   useEffect(() => {
     if (!drawerOpen) return;
     function onKeyDown(e: KeyboardEvent) {
@@ -97,7 +96,7 @@ export default function ChapterNav({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [drawerOpen]);
 
-  // Close drawer on outside click
+  //close drawer on outside click
   useEffect(() => {
     if (!drawerOpen) return;
     function onClick(e: MouseEvent) {
@@ -160,7 +159,7 @@ export default function ChapterNav({
         )}
       </div>
 
-      {/* Chapter drawer */}
+      {/*chapter drawer*/}
       {drawerOpen && (
         <div
           ref={drawerRef}

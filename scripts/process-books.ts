@@ -10,13 +10,13 @@ const INDEX_PATH = path.join(DATA_DIR, "book-index.json");
 const CHUNK_SIZE = 2000; // words per chunk when no chapter markers
 
 function stripGutenbergHeaderFooter(text: string): string {
-  // Strip header (everything before "*** START OF")
+  //strip header
   const startMatch = text.match(/\*\*\*\s*START OF.*?\*\*\*/i);
   if (startMatch && startMatch.index !== undefined) {
     text = text.slice(startMatch.index + startMatch[0].length);
   }
 
-  // Strip footer (everything after "*** END OF")
+  //strip footer
   const endMatch = text.match(/\*\*\*\s*END OF.*?\*\*\*/i);
   if (endMatch && endMatch.index !== undefined) {
     text = text.slice(0, endMatch.index);
@@ -39,19 +39,12 @@ function countWords(text: string): number {
 }
 
 function splitIntoChapters(text: string): Chapter[] {
-  // Try various chapter heading patterns
   const patterns = [
-    // "CHAPTER X" or "Chapter X" with optional title
     /^(CHAPTER|Chapter)\s+(\d+|[IVXLCDM]+)[\.\:\s]*(.*)/m,
-    // "Part X" or "PART X"
     /^(PART|Part)\s+(\d+|[IVXLCDM]+)[\.\:\s]*(.*)/m,
-    // "Book X" or "BOOK X"
     /^(BOOK|Book)\s+(\d+|[IVXLCDM]+)[\.\:\s]*(.*)/m,
-    // "ACT X" / "SCENE X" for plays
     /^(ACT|Act|SCENE|Scene)\s+(\d+|[IVXLCDM]+)[\.\:\s]*(.*)/m,
   ];
-
-  // Build a combined regex that matches any chapter-like heading
   const combinedPattern =
     /^(?:(?:CHAPTER|Chapter)\s+(?:\d+|[IVXLCDM]+)|(?:PART|Part)\s+(?:\d+|[IVXLCDM]+)|(?:BOOK|Book)\s+(?:\d+|[IVXLCDM]+)|(?:ACT|Act|SCENE|Scene)\s+(?:\d+|[IVXLCDM]+))[\.\:\s]*(.*)/gm;
 
@@ -82,7 +75,7 @@ function splitIntoChapters(text: string): Chapter[] {
     return chapters;
   }
 
-  // Try simple Roman numeral sections: lines that are just "I.", "II.", etc.
+  //try roman numeral sections
   const romanPattern = /^([IVXLCDM]+)\.?\s*$/gm;
   const romanMatches: { index: number; numeral: string }[] = [];
   while ((match = romanPattern.exec(text)) !== null) {
@@ -105,7 +98,7 @@ function splitIntoChapters(text: string): Chapter[] {
     return chapters;
   }
 
-  // Fallback: split by word count
+  //fallback: split by word count
   const words = text.split(/\s+/).filter((w) => w.length > 0);
   const chapters: Chapter[] = [];
   for (let i = 0; i < words.length; i += CHUNK_SIZE) {
@@ -139,7 +132,6 @@ function processBook(entry: CatalogEntry, slugs: Map<string, number>): Book | nu
   const chapters = splitIntoChapters(cleanText);
   const totalWordCount = chapters.reduce((sum, ch) => sum + ch.wordCount, 0);
 
-  // Generate unique slug
   let slug = toSlug(entry.title);
   if (!slug) slug = `book-${entry.id}`;
 
@@ -188,11 +180,9 @@ function main(): void {
       continue;
     }
 
-    // Write full book JSON
     const outPath = path.join(PROCESSED_DIR, `${book.slug}.json`);
     fs.writeFileSync(outPath, JSON.stringify(book, null, 2));
 
-    // Add to index (without chapter content)
     bookIndex.push({
       id: book.id,
       slug: book.slug,
@@ -211,7 +201,6 @@ function main(): void {
     }
   }
 
-  // Write book index
   fs.writeFileSync(INDEX_PATH, JSON.stringify(bookIndex, null, 2));
 
   console.log(`\nDone!`);

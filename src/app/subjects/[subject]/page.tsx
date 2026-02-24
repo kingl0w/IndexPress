@@ -41,7 +41,7 @@ export default async function SubjectPage({ params }: Props) {
   const subject = decodeURIComponent(rawSubject);
   const books = getBooksBySubject(subject);
 
-  // Filter for exact subject match
+  //filter for exact subject match
   const exactBooks = books.filter((b) =>
     b.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
   );

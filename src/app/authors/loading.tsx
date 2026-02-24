@@ -4,7 +4,7 @@ export default function AuthorsLoading() {
       <div className="h-9 w-40 rounded bg-stone-200 dark:bg-stone-700" />
       <div className="mt-3 h-5 w-56 rounded bg-stone-200 dark:bg-stone-700" />
 
-      {/* Letter nav skeleton */}
+      {/*letter nav skeleton*/}
       <div className="mt-8 mb-8 flex flex-wrap gap-1">
         {Array.from({ length: 20 }).map((_, i) => (
           <div
@@ -14,7 +14,7 @@ export default function AuthorsLoading() {
         ))}
       </div>
 
-      {/* List skeleton */}
+      {/*list skeleton*/}
       <div className="space-y-10">
         {Array.from({ length: 3 }).map((_, g) => (
           <div key={g}>
