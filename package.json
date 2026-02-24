@@ -1,19 +1,29 @@
 {
-  "name": "gutenberg-init",
+  "name": "gutenberg-reader",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "SAMPLE_DATA=true next dev",
+    "dev:full": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint src lib",
+    "typecheck": "tsc --noEmit",
+    "data:fetch": "npx tsx scripts/fetch-catalog.ts",
+    "data:download": "npx tsx scripts/download-texts.ts",
+    "data:process": "npx tsx scripts/process-books.ts",
+    "data:pipeline": "npm run data:fetch && npm run data:download && npm run data:process",
+    "typesense:index": "npx tsx scripts/index-typesense.ts",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "typesense": "^3.0.1"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.1.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -21,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

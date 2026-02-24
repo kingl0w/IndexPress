@@ -1,0 +1,25 @@
+{
+  "id": 84,
+  "slug": "frankenstein",
+  "title": "Frankenstein; Or, The Modern Prometheus",
+  "author": { "name": "Shelley, Mary Wollstonecraft", "birthYear": 1797, "deathYear": 1851 },
+  "subjects": ["Science fiction", "Horror tales", "Monsters -- Fiction", "Scientists -- Fiction"],
+  "bookshelves": ["Gothic Fiction", "Movie Books"],
+  "totalChapters": 2,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Chapter 1",
+      "content": "I am by birth a Genevese, and my family is one of the most distinguished of that republic. My ancestors had been for many years counsellors and syndics, and my father had filled several public situations with honour and reputation. He was respected by all who knew him for his integrity and indefatigable attention to public business. He passed his younger days perpetually occupied by the affairs of his country; a variety of circumstances had prevented his marrying early, nor was it until the decline of life that he became a husband and the father of a family. The circumstances of his marriage illustrate the character of the man.",
+      "wordCount": 150
+    },
+    {
+      "number": 2,
+      "title": "Chapter 2",
+      "content": "We were brought up together; there was not quite a year difference in our ages. I need not say that we were strangers to any species of disunion or dispute. Harmony was the soul of our companionship, and the diversity and contrast that subsisted in our characters drew us nearer together. Elizabeth was of a calmer and more concentrated disposition; but, with all my ardour, I was capable of a more intense application and was more deeply smitten with the thirst for knowledge. She busied herself with following the aerial creations of the poets; and in the majestic and wondrous scenes which surrounded our Swiss home.",
+      "wordCount": 150
+    }
+  ],
+  "totalWordCount": 300,
+  "language": "en"
+}

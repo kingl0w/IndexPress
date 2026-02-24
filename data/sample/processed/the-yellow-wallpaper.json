@@ -1,0 +1,25 @@
+{
+  "id": 1952,
+  "slug": "the-yellow-wallpaper",
+  "title": "The Yellow Wallpaper",
+  "author": { "name": "Gilman, Charlotte Perkins", "birthYear": 1860, "deathYear": 1935 },
+  "subjects": ["Psychological fiction", "Mentally ill women -- Fiction", "Feminist fiction"],
+  "bookshelves": ["Best Books Ever Listings"],
+  "totalChapters": 2,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Section 1",
+      "content": "It is very seldom that mere ordinary people like John and myself secure ancestral halls for the summer. A colonial mansion, a hereditary estate, I would say a haunted house, and reach the height of romantic felicity, but that would be asking too much of fate! Still I will proudly declare that there is something queer about it. Else, why should it be let so cheaply? And why have stood so long untenanted? John laughs at me, of course, but one expects that in marriage. John is practical in the extreme. He has no patience with faith, an intense horror of superstition, and he scoffs openly at any talk of things not to be felt and seen.",
+      "wordCount": 140
+    },
+    {
+      "number": 2,
+      "title": "Section 2",
+      "content": "I sometimes fancy that in my condition if I had less opposition and more society and stimulus, but John says the very worst thing I can do is to think about my condition, and I confess it always makes me feel bad. So I will let it alone and talk about the house. The most beautiful place! It is quite alone, standing well back from the road, quite three miles from the village. It makes me think of English places that you read about, for there are hedges and walls and gates that lock, and lots of separate little houses for the gardeners and people. There is a delicious garden!",
+      "wordCount": 140
+    }
+  ],
+  "totalWordCount": 280,
+  "language": "en"
+}

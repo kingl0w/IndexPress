@@ -1,0 +1,25 @@
+{
+  "id": 1661,
+  "slug": "the-adventures-of-sherlock-holmes",
+  "title": "The Adventures of Sherlock Holmes",
+  "author": { "name": "Doyle, Arthur Conan", "birthYear": 1859, "deathYear": 1930 },
+  "subjects": ["Detective and mystery stories", "Holmes, Sherlock (Fictitious character) -- Fiction"],
+  "bookshelves": ["Detective Fiction"],
+  "totalChapters": 2,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Chapter 1",
+      "content": "To Sherlock Holmes she is always the woman. I have seldom heard him mention her under any other name. In his eyes she eclipses and predominates the whole of her sex. It was not that he felt any emotion akin to love for Irene Adler. All emotions, and that one particularly, were abhorrent to his cold, precise but admirably balanced mind. He was, I take it, the most perfect reasoning and observing machine that the world has seen, but as a lover he would have placed himself in a false position. He never spoke of the softer passions, save with a gibe and a sneer.",
+      "wordCount": 155
+    },
+    {
+      "number": 2,
+      "title": "Chapter 2",
+      "content": "We met next day as he had arranged, and inspected the rooms at No. 221B Baker Street, of which he had spoken at our meeting. They consisted of a couple of comfortable bed-rooms and a single large airy sitting-room, cheerfully furnished, and illuminated by two broad windows. So desirable in every way were the apartments, and so moderate did the terms seem when divided between us, that the bargain was concluded upon the spot, and we at once entered into possession. That very evening I moved my things round from the hotel, and on the following morning Sherlock Holmes followed me.",
+      "wordCount": 155
+    }
+  ],
+  "totalWordCount": 310,
+  "language": "en"
+}
