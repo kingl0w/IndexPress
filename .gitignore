@@ -19,7 +19,4 @@ data/book-index.json
 # old FlexSearch indexes
 /public/search/
 
-# claude
-Claude.md
-CLAUDE.md
-Claude.md:Zone.Identifier
+
