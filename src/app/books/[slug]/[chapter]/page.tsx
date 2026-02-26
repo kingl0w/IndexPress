@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getAllBooks, getBookBySlug, getBookChapter } from "../../../../../lib/data";
 import { formatAuthorName, SITE_URL } from "@/lib/utils";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -113,15 +114,22 @@ export default async function ChapterPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <Breadcrumbs
-        className="mb-4"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Books", href: "/books" },
-          { label: book.title, href: `/books/${slug}` },
-          { label: chapter.title },
-        ]}
-      />
+      <div className="flex items-center justify-between gap-4 mb-4">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Books", href: "/books" },
+            { label: book.title, href: `/books/${slug}` },
+            { label: chapter.title },
+          ]}
+        />
+        <Link
+          href={`/books/${slug}`}
+          className="shrink-0 text-sm text-stone-400 hover:text-amber-400 transition-colors"
+        >
+          &larr; Back to Book
+        </Link>
+      </div>
 
       <ReaderView
         bookTitle={book.title}

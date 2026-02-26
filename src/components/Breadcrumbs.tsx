@@ -19,21 +19,21 @@ export default function Breadcrumbs({ items, className = "" }: BreadcrumbsProps)
           return (
             <li key={i} className="flex items-center gap-1.5">
               {i > 0 && (
-                <span aria-hidden="true" className="text-[var(--reader-text-muted,#78716c)]">
+                <span aria-hidden="true" className="text-stone-600">
                   /
                 </span>
               )}
               {isLast || !item.href ? (
                 <span
                   aria-current={isLast ? "page" : undefined}
-                  className="text-[var(--reader-text,#1c1917)]"
+                  className="text-stone-200"
                 >
                   {item.label}
                 </span>
               ) : (
                 <Link
                   href={item.href}
-                  className="text-[var(--reader-text-muted,#78716c)] hover:text-[var(--reader-text,#1c1917)] underline-offset-2 hover:underline"
+                  className="text-stone-400 hover:text-amber-400 underline-offset-2 hover:underline transition-colors"
                 >
                   {item.label}
                 </Link>
