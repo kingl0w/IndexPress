@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Search across thousands of free classic books from Project Gutenberg by title, author, or keyword.",
   openGraph: {
-    title: "Search | Gutenberg Reader",
+    title: "Search | IndexPress",
     description:
       "Search across thousands of free classic books from Project Gutenberg.",
   },

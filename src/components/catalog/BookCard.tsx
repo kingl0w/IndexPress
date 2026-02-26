@@ -40,7 +40,7 @@ export default function BookCard({ book }: BookCardProps) {
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group flex gap-4 rounded-lg border border-stone-200 p-3 transition-all hover:border-stone-300 hover:shadow-md dark:border-stone-700 dark:hover:border-stone-600 dark:hover:shadow-stone-900/40 sm:flex-col sm:p-0 sm:pb-4"
+      className="group flex gap-4 rounded-lg border border-stone-200 p-3 transition-all duration-200 hover:scale-[1.02] hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/10 dark:border-stone-700 dark:hover:border-indigo-500/50 dark:hover:shadow-indigo-500/20 sm:flex-col sm:p-0 sm:pb-4"
     >
       {/*CSS-only book cover*/}
       <div

@@ -5,9 +5,9 @@ import CatalogBrowser from "@/components/catalog/CatalogBrowser";
 export const metadata: Metadata = {
   title: "Browse All Books",
   description:
-    "Browse the complete catalog of free classic books available to read online from Project Gutenberg. Filter by subject, author, or search by title.",
+    "Browse the complete catalog of free classic books available to read online on IndexPress. Filter by subject, author, or search by title.",
   openGraph: {
-    title: "Browse All Books | Gutenberg Reader",
+    title: "Browse All Books | IndexPress",
     description:
       "Browse the complete catalog of free classic books available to read online.",
   },

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Read thousands of free classic books from Project Gutenberg. Browse by author, subject, or search the full catalog.",
+    "Read thousands of free classic books on IndexPress. Browse by author, subject, or search the full catalog.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -63,7 +63,7 @@ export default function RootLayout({
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <Link
               href="/"
-              className="text-xl font-bold tracking-tight text-stone-900 dark:text-stone-100"
+              className="text-xl font-bold tracking-tight text-stone-900 hover:text-indigo-600 dark:text-stone-100 dark:hover:text-indigo-400 transition-colors"
             >
               {SITE_NAME}
             </Link>
@@ -74,7 +74,7 @@ export default function RootLayout({
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+                      className="text-sm font-medium text-stone-600 hover:text-indigo-600 dark:text-stone-400 dark:hover:text-indigo-400 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -85,6 +85,7 @@ export default function RootLayout({
 
             <MobileNav />
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 opacity-80" aria-hidden="true" />
         </header>
 
         <main id="main-content" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

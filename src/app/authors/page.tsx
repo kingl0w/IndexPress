@@ -6,10 +6,10 @@ import { formatAuthorName } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Authors",
   description:
-    "Browse all authors in the Gutenberg Reader library. Find classic literature by your favorite authors, free to read online.",
+    "Browse all authors in the IndexPress library. Find classic literature by your favorite authors, free to read online.",
   openGraph: {
-    title: "Authors | Gutenberg Reader",
-    description: "Browse all authors in the Gutenberg Reader library.",
+    title: "Authors | IndexPress",
+    description: "Browse all authors in the IndexPress library.",
   },
 };
 

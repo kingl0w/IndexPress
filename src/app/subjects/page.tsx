@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description:
     "Browse books by subject and genre. Find classic fiction, poetry, drama, philosophy, and more — all free to read online.",
   openGraph: {
-    title: "Subjects | Gutenberg Reader",
-    description: "Browse books by subject and genre from Project Gutenberg.",
+    title: "Subjects | IndexPress",
+    description: "Browse books by subject and genre on IndexPress.",
   },
 };
 

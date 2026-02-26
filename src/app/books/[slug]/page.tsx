@@ -133,7 +133,7 @@ export default async function BookPage({ params }: Props) {
                 </p>
               </div>
               <p className="text-[10px] tracking-widest text-white/30 uppercase">
-                Project Gutenberg
+                IndexPress
               </p>
             </div>
           </div>

@@ -1,6 +1,6 @@
-export const SITE_NAME = "Gutenberg Reader";
+export const SITE_NAME = "IndexPress";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://gutenberg-reader.vercel.app";
+  process.env.NEXT_PUBLIC_BASE_URL || "https://indexpress.vercel.app";
 
 export function formatAuthorName(name: string): string {
   const parts = name.split(", ");
