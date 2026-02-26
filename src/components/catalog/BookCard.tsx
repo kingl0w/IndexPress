@@ -40,11 +40,11 @@ export default function BookCard({ book }: BookCardProps) {
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group flex gap-4 rounded-lg border border-stone-200 p-3 transition-all duration-200 hover:scale-[1.02] hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/10 dark:border-stone-700 dark:hover:border-indigo-500/50 dark:hover:shadow-indigo-500/20 sm:flex-col sm:p-0 sm:pb-4"
+      className="group flex gap-4 rounded-lg border border-stone-200 p-3 transition-all duration-200 hover:scale-[1.02] hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 dark:border-stone-800 dark:hover:border-teal-500/30 dark:hover:shadow-teal-500/10 sm:flex-col sm:p-0 sm:pb-4"
     >
       {/*CSS-only book cover*/}
       <div
-        className={`hidden aspect-[3/2] w-full flex-col justify-end overflow-hidden rounded-t-lg bg-gradient-to-br ${palette.from} ${palette.to} p-4 transition-transform sm:flex`}
+        className={`hidden aspect-[3/2] w-full flex-col justify-end overflow-hidden rounded-t-lg bg-gradient-to-br ${palette.from} ${palette.to} p-4 transition-transform duration-200 group-hover:scale-[1.01] sm:flex`}
         aria-hidden="true"
       >
         <p className="line-clamp-2 text-sm font-bold leading-snug text-white/90">
@@ -65,7 +65,7 @@ export default function BookCard({ book }: BookCardProps) {
 
       {/*book info*/}
       <div className="min-w-0 flex-1 sm:px-4">
-        <h3 className="line-clamp-2 font-semibold text-stone-900 group-hover:text-stone-700 dark:text-stone-100 dark:group-hover:text-stone-300">
+        <h3 className="line-clamp-2 font-semibold text-stone-900 group-hover:text-teal-700 dark:text-stone-100 dark:group-hover:text-teal-400 transition-colors">
           {book.title}
         </h3>
         <p className="mt-0.5 truncate text-sm text-stone-500 dark:text-stone-400">
@@ -77,7 +77,7 @@ export default function BookCard({ book }: BookCardProps) {
             {displaySubjects.map((subject) => (
               <span
                 key={subject}
-                className="rounded bg-stone-100 px-1.5 py-0.5 text-[10px] text-stone-500 dark:bg-stone-800 dark:text-stone-400"
+                className="rounded-full bg-teal-50 px-1.5 py-0.5 text-[10px] font-medium text-teal-700 dark:bg-teal-500/10 dark:text-teal-400"
               >
                 {subject}
               </span>

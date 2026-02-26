@@ -85,7 +85,6 @@ export default function SearchBar() {
     [showSuggestions, suggestions, activeSuggestion, router]
   );
 
-  //close suggestions when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (
@@ -99,7 +98,6 @@ export default function SearchBar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  //listen for global focus event from SearchHotkey
   useEffect(() => {
     const handler = () => {
       inputRef.current?.focus();
@@ -129,7 +127,7 @@ export default function SearchBar() {
         </div>
         <input
           ref={inputRef}
-          type="search"
+          type="text"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
           onFocus={() => {
@@ -137,7 +135,7 @@ export default function SearchBar() {
           }}
           onKeyDown={handleKeyDown}
           placeholder="Search..."
-          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-slate-900 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/30"
           aria-label="Search books"
           role="combobox"
           aria-expanded={showSuggestions && suggestions.length > 0}
@@ -150,7 +148,7 @@ export default function SearchBar() {
           autoComplete="off"
         />
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs text-stone-400 border border-stone-300 dark:border-stone-600 rounded font-mono">
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs text-stone-400 border border-stone-300 dark:border-stone-700 rounded font-mono">
             {isMac ? "\u2318" : "Ctrl+"}K
           </kbd>
         </div>
@@ -183,12 +181,11 @@ export default function SearchBar() {
         )}
       </form>
 
-      {/*suggestions dropdown*/}
       {showSuggestions && suggestions.length > 0 && (
         <ul
           id="search-suggestions"
           role="listbox"
-          className="absolute z-50 top-full left-0 right-0 mt-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-lg shadow-lg overflow-hidden"
+          className="absolute z-50 top-full left-0 right-0 mt-1 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-700 rounded-lg shadow-lg overflow-hidden"
         >
           {suggestions.map((suggestion, i) => (
             <li
@@ -202,8 +199,8 @@ export default function SearchBar() {
                 onClick={() => setShowSuggestions(false)}
                 className={`block px-3 py-2 text-sm ${
                   i === activeSuggestion
-                    ? "bg-blue-50 dark:bg-blue-950"
-                    : "hover:bg-stone-50 dark:hover:bg-stone-800"
+                    ? "bg-teal-50 dark:bg-teal-950/30"
+                    : "hover:bg-stone-50 dark:hover:bg-slate-800"
                 }`}
               >
                 <span className="font-medium text-stone-900 dark:text-stone-100">

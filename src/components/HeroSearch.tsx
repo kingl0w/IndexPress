@@ -84,7 +84,6 @@ export default function HeroSearch() {
     [showSuggestions, suggestions]
   );
 
-  // Close suggestions when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (
@@ -98,14 +97,12 @@ export default function HeroSearch() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Clean up debounce timer on unmount
   useEffect(() => {
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
   }, []);
 
-  // Listen for global Cmd/Ctrl+K focus event
   useEffect(() => {
     const handler = () => {
       inputRef.current?.focus();
@@ -118,10 +115,9 @@ export default function HeroSearch() {
     <div ref={wrapperRef} className="relative max-w-xl mx-auto w-full">
       <form onSubmit={handleSubmit}>
         <div className="relative">
-          {/* Search icon */}
           <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
             <svg
-              className="w-5 h-5 text-white/50"
+              className="w-5 h-5 text-slate-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -138,7 +134,7 @@ export default function HeroSearch() {
 
           <input
             ref={inputRef}
-            type="search"
+            type="text"
             value={query}
             onChange={(e) => handleChange(e.target.value)}
             onFocus={() => {
@@ -146,7 +142,7 @@ export default function HeroSearch() {
             }}
             onKeyDown={handleKeyDown}
             placeholder="Search books, authors, subjects..."
-            className="w-full py-4 px-5 pl-12 pr-20 text-lg rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent transition-all"
+            className="w-full py-4 px-5 pl-12 pr-20 text-lg rounded-xl bg-white/[0.07] backdrop-blur-sm border border-white/[0.12] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/30 transition-all"
             aria-label="Search books"
             role="combobox"
             aria-expanded={showSuggestions && suggestions.length > 0}
@@ -159,21 +155,19 @@ export default function HeroSearch() {
             autoComplete="off"
           />
 
-          {/* Cmd/Ctrl+K hint */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-1 text-xs text-white/40 border border-white/20 rounded-md font-mono bg-white/5">
+            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-1 text-xs text-slate-400 border border-white/[0.12] rounded-md font-mono bg-white/[0.05]">
               {isMac ? "\u2318" : "Ctrl+"}K
             </kbd>
           </div>
         </div>
       </form>
 
-      {/* Suggestions dropdown */}
       {showSuggestions && suggestions.length > 0 && (
         <ul
           id="hero-search-suggestions"
           role="listbox"
-          className="absolute z-50 top-full left-0 right-0 mt-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl shadow-2xl overflow-hidden"
+          className="absolute z-50 top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-700 rounded-xl shadow-2xl overflow-hidden"
         >
           {suggestions.map((suggestion, i) => (
             <li
@@ -187,12 +181,12 @@ export default function HeroSearch() {
                 onClick={() => setShowSuggestions(false)}
                 className={`flex items-center gap-3 px-4 py-3 transition-colors ${
                   i === activeSuggestion
-                    ? "bg-indigo-50 dark:bg-indigo-950/50"
-                    : "hover:bg-stone-50 dark:hover:bg-stone-800"
+                    ? "bg-teal-50 dark:bg-teal-950/30"
+                    : "hover:bg-stone-50 dark:hover:bg-slate-800"
                 }`}
               >
                 <svg
-                  className="w-4 h-4 shrink-0 text-stone-400 dark:text-stone-500"
+                  className="w-4 h-4 shrink-0 text-stone-400 dark:text-slate-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -221,7 +215,7 @@ export default function HeroSearch() {
               <Link
                 href={`/search?q=${encodeURIComponent(query.trim())}`}
                 onClick={() => setShowSuggestions(false)}
-                className="flex items-center gap-3 px-4 py-3 border-t border-stone-200 dark:border-stone-700 text-sm text-indigo-600 dark:text-indigo-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 border-t border-stone-200 dark:border-slate-700 text-sm text-teal-600 dark:text-teal-400 hover:bg-stone-50 dark:hover:bg-slate-800 transition-colors"
               >
                 <svg
                   className="w-4 h-4 shrink-0"

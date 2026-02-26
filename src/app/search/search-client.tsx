@@ -32,19 +32,19 @@ function BookResultCard({
       href={`/books/${result.slug}`}
       className={`block p-4 rounded-lg border transition-colors ${
         isActive
-          ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
-          : "border-stone-200 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-600"
+          ? "border-teal-500 bg-teal-50 dark:bg-teal-950/20"
+          : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
       }`}
       data-active={isActive}
     >
-      <h3 className="font-semibold text-lg leading-tight text-stone-900 dark:text-stone-100 [&>mark]:bg-yellow-200 [&>mark]:dark:bg-yellow-900 [&>mark]:rounded [&>mark]:px-0.5">
+      <h3 className="font-semibold text-lg leading-tight text-stone-900 dark:text-stone-100 [&>mark]:bg-teal-100 [&>mark]:dark:bg-teal-900/50 [&>mark]:rounded [&>mark]:px-0.5">
         {result.highlights.title ? (
           <HighlightedSnippet html={result.highlights.title} />
         ) : (
           result.title
         )}
       </h3>
-      <p className="text-sm text-stone-600 dark:text-stone-400 mt-1 [&>mark]:bg-yellow-200 [&>mark]:dark:bg-yellow-900 [&>mark]:rounded [&>mark]:px-0.5">
+      <p className="text-sm text-stone-600 dark:text-stone-400 mt-1 [&>mark]:bg-teal-100 [&>mark]:dark:bg-teal-900/50 [&>mark]:rounded [&>mark]:px-0.5">
         by{" "}
         {result.highlights.authorName ? (
           <HighlightedSnippet html={result.highlights.authorName} />
@@ -61,7 +61,7 @@ function BookResultCard({
           {result.subjects.slice(0, 4).map((subject) => (
             <span
               key={subject}
-              className="text-xs px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400"
+              className="text-xs px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 dark:bg-teal-500/10 dark:text-teal-400"
             >
               {subject}
             </span>
@@ -84,8 +84,8 @@ function ChapterResultCard({
       href={`/books/${result.bookSlug}/${result.chapterNumber}`}
       className={`block p-4 rounded-lg border transition-colors ${
         isActive
-          ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
-          : "border-stone-200 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-600"
+          ? "border-teal-500 bg-teal-50 dark:bg-teal-950/20"
+          : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
       }`}
       data-active={isActive}
     >
@@ -100,7 +100,7 @@ function ChapterResultCard({
       <p className="text-sm text-stone-600 dark:text-stone-400 mt-0.5">
         by {result.authorName}
       </p>
-      <p className="text-sm mt-2 text-stone-700 dark:text-stone-300 leading-relaxed [&>mark]:bg-yellow-200 [&>mark]:dark:bg-yellow-900 [&>mark]:rounded [&>mark]:px-0.5">
+      <p className="text-sm mt-2 text-stone-700 dark:text-stone-300 leading-relaxed [&>mark]:bg-teal-100 [&>mark]:dark:bg-teal-900/50 [&>mark]:rounded [&>mark]:px-0.5">
         <HighlightedSnippet html={result.snippet} />
       </p>
     </Link>
@@ -113,11 +113,11 @@ function LoadingSkeleton() {
       {Array.from({ length: 5 }).map((_, i) => (
         <div
           key={i}
-          className="p-4 rounded-lg border border-stone-200 dark:border-stone-700 animate-pulse"
+          className="p-4 rounded-lg border border-stone-200 dark:border-stone-800 animate-pulse"
         >
-          <div className="h-5 bg-stone-200 dark:bg-stone-700 rounded w-3/4" />
-          <div className="h-4 bg-stone-200 dark:bg-stone-700 rounded w-1/3 mt-2" />
-          <div className="h-3 bg-stone-200 dark:bg-stone-700 rounded w-full mt-3" />
+          <div className="h-5 bg-stone-200 dark:bg-stone-800 rounded w-3/4" />
+          <div className="h-4 bg-stone-200 dark:bg-stone-800 rounded w-1/3 mt-2" />
+          <div className="h-3 bg-stone-200 dark:bg-stone-800 rounded w-full mt-3" />
         </div>
       ))}
     </div>
@@ -195,7 +195,6 @@ export default function SearchPageClient() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //focus input on mount
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -220,7 +219,6 @@ export default function SearchPageClient() {
           executeBooksSearch(value);
         }, 300);
       }
-      //fulltext searches on enter only
     },
     [activeTab, executeBooksSearch, router, searchParams]
   );
@@ -288,7 +286,6 @@ export default function SearchPageClient() {
     [activeIndex, activeTab, currentResults, router, handleFulltextSubmit]
   );
 
-  //scroll active result into view
   useEffect(() => {
     if (activeIndex >= 0 && resultsRef.current) {
       const activeEl = resultsRef.current.querySelector(
@@ -323,7 +320,7 @@ export default function SearchPageClient() {
         </div>
         <input
           ref={inputRef}
-          type="search"
+          type="text"
           value={query}
           onChange={(e) => handleInput(e.target.value)}
           placeholder={
@@ -331,7 +328,7 @@ export default function SearchPageClient() {
               ? "Search books, authors, or subjects..."
               : "Search the full text of every book... (press Enter)"
           }
-          className="w-full pl-10 pr-10 py-3 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+          className="w-full pl-10 pr-10 py-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-slate-900 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/30 text-lg"
           aria-label="Search"
           role="combobox"
           aria-expanded={hasQuery && currentResults.length > 0}
@@ -366,7 +363,7 @@ export default function SearchPageClient() {
 
       {/*tabs*/}
       <div
-        className="flex gap-1 mt-4 border-b border-stone-200 dark:border-stone-700"
+        className="flex gap-1 mt-4 border-b border-stone-200 dark:border-stone-800"
         role="tablist"
       >
         <button
@@ -375,7 +372,7 @@ export default function SearchPageClient() {
           onClick={() => handleTabSwitch("catalog")}
           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors -mb-px ${
             activeTab === "catalog"
-              ? "border-blue-500 text-blue-600 dark:text-blue-400"
+              ? "border-teal-500 text-teal-600 dark:text-teal-400"
               : "border-transparent text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"
           }`}
         >
@@ -387,7 +384,7 @@ export default function SearchPageClient() {
           onClick={() => handleTabSwitch("fulltext")}
           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors -mb-px ${
             activeTab === "fulltext"
-              ? "border-blue-500 text-blue-600 dark:text-blue-400"
+              ? "border-teal-500 text-teal-600 dark:text-teal-400"
               : "border-transparent text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"
           }`}
         >
@@ -402,7 +399,6 @@ export default function SearchPageClient() {
         role="listbox"
         className="mt-4 space-y-3"
       >
-        {/*error state*/}
         {error && (
           <div className="text-center py-8 px-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950">
             <p className="text-red-600 dark:text-red-400">{error}</p>
@@ -412,7 +408,6 @@ export default function SearchPageClient() {
           </div>
         )}
 
-        {/*search stats*/}
         {!error && hasQuery && !isSearching && currentResults.length > 0 && (
           <p className="text-sm text-stone-500 dark:text-stone-400">
             {totalFound.toLocaleString()} result
@@ -420,10 +415,8 @@ export default function SearchPageClient() {
           </p>
         )}
 
-        {/*loading state*/}
         {isSearching && <LoadingSkeleton />}
 
-        {/*book results*/}
         {!isSearching &&
           !error &&
           hasQuery &&
@@ -439,7 +432,6 @@ export default function SearchPageClient() {
             </div>
           ))}
 
-        {/*chapter results*/}
         {!isSearching &&
           !error &&
           hasQuery &&
@@ -455,7 +447,6 @@ export default function SearchPageClient() {
             </div>
           ))}
 
-        {/*fulltext pagination*/}
         {!isSearching &&
           !error &&
           activeTab === "fulltext" &&
@@ -464,7 +455,7 @@ export default function SearchPageClient() {
               <button
                 onClick={() => handleChapterPageChange(chapterPage - 1)}
                 disabled={chapterPage <= 1}
-                className="px-3 py-1.5 text-sm rounded border border-stone-300 dark:border-stone-600 disabled:opacity-40 hover:bg-stone-50 dark:hover:bg-stone-800"
+                className="px-3 py-1.5 text-sm rounded border border-stone-300 dark:border-stone-700 disabled:opacity-40 hover:bg-stone-50 dark:hover:bg-slate-800"
               >
                 Previous
               </button>
@@ -474,14 +465,13 @@ export default function SearchPageClient() {
               <button
                 onClick={() => handleChapterPageChange(chapterPage + 1)}
                 disabled={chapterPage >= totalChapterPages}
-                className="px-3 py-1.5 text-sm rounded border border-stone-300 dark:border-stone-600 disabled:opacity-40 hover:bg-stone-50 dark:hover:bg-stone-800"
+                className="px-3 py-1.5 text-sm rounded border border-stone-300 dark:border-stone-700 disabled:opacity-40 hover:bg-stone-50 dark:hover:bg-slate-800"
               >
                 Next
               </button>
             </div>
           )}
 
-        {/*empty state*/}
         {!isSearching && !error && hasQuery && currentResults.length === 0 && (
           <div className="text-center py-12">
             <p className="text-stone-500 dark:text-stone-400 text-lg">
@@ -493,7 +483,6 @@ export default function SearchPageClient() {
           </div>
         )}
 
-        {/*fulltext hint*/}
         {!isSearching &&
           !error &&
           activeTab === "fulltext" &&
@@ -502,12 +491,11 @@ export default function SearchPageClient() {
           totalFound === 0 && (
             <div className="text-center py-12">
               <p className="text-stone-400 dark:text-stone-500">
-                Press <kbd className="px-1.5 py-0.5 border border-stone-300 dark:border-stone-600 rounded text-xs font-mono">Enter</kbd> to search the full text of every book
+                Press <kbd className="px-1.5 py-0.5 border border-stone-300 dark:border-stone-700 rounded text-xs font-mono">Enter</kbd> to search the full text of every book
               </p>
             </div>
           )}
 
-        {/*no query state*/}
         {!hasQuery && !isSearching && !error && (
           <div className="text-center py-12">
             <p className="text-stone-400 dark:text-stone-500">

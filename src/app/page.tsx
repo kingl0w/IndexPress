@@ -54,14 +54,18 @@ export default function HomePage() {
       />
 
       {/*hero*/}
-      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-950 via-purple-900 to-indigo-900 px-6 py-16 text-center sm:px-12 sm:py-24">
-        {/*decorative glow effects*/}
+      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-6 py-16 text-center sm:px-12 sm:py-24">
+        {/*decorative glow*/}
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(129,140,248,0.15),transparent_50%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(20,184,166,0.12),transparent_50%)]"
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(168,85,247,0.1),transparent_50%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(16,185,129,0.08),transparent_50%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse,_rgba(20,184,166,0.06),transparent_70%)]"
           aria-hidden="true"
         />
 
@@ -69,11 +73,11 @@ export default function HomePage() {
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Classic Literature,
             <br />
-            <span className="bg-gradient-to-r from-indigo-200 via-purple-200 to-indigo-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent">
               Free &amp; Open
             </span>
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-indigo-100/80">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
             {totalChapters.toLocaleString()}+ chapters of free classic literature.
             Read online, no sign-up required.
           </p>
@@ -85,13 +89,13 @@ export default function HomePage() {
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/books"
-              className="inline-flex items-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-indigo-900 shadow-lg shadow-indigo-950/30 transition-all hover:bg-indigo-50 hover:shadow-xl hover:shadow-indigo-950/40"
+              className="inline-flex items-center rounded-lg bg-teal-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-all hover:bg-teal-400 hover:shadow-xl hover:shadow-teal-500/30"
             >
               Browse All Books
             </Link>
             <Link
               href="/search"
-              className="inline-flex items-center rounded-lg border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20"
+              className="inline-flex items-center rounded-lg border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-200 transition-all hover:border-teal-500/40 hover:text-teal-300 hover:bg-white/[0.03]"
             >
               Search the Catalog
             </Link>
@@ -102,40 +106,40 @@ export default function HomePage() {
       {/*stats*/}
       <section
         aria-label="Library statistics"
-        className="-mt-6 relative z-10 mx-4 grid grid-cols-3 gap-4 rounded-xl border border-indigo-100 bg-gradient-to-r from-indigo-50 via-purple-50 to-indigo-50 p-6 shadow-lg dark:border-indigo-900/50 dark:from-indigo-950/40 dark:via-purple-950/40 dark:to-indigo-950/40 sm:mx-8 sm:p-8 lg:mx-16"
+        className="-mt-6 relative z-10 mx-4 grid grid-cols-3 gap-4 rounded-xl border border-stone-200 bg-white/80 backdrop-blur-sm p-6 shadow-lg dark:border-white/[0.08] dark:bg-white/[0.03] dark:backdrop-blur-md sm:mx-8 sm:p-8 lg:mx-16"
       >
         <div className="text-center">
-          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/50">
-            <svg className="h-5 w-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-teal-50 dark:bg-teal-500/10">
+            <svg className="h-5 w-5 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </div>
           <p className="text-2xl font-bold text-stone-900 dark:text-stone-100 sm:text-3xl">
             {books.length.toLocaleString()}
           </p>
-          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Books</p>
+          <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">Books</p>
         </div>
         <div className="text-center">
-          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/50">
-            <svg className="h-5 w-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-500/10">
+            <svg className="h-5 w-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </div>
           <p className="text-2xl font-bold text-stone-900 dark:text-stone-100 sm:text-3xl">
             {authors.length.toLocaleString()}
           </p>
-          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Authors</p>
+          <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">Authors</p>
         </div>
         <div className="text-center">
-          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-violet-100 dark:bg-violet-900/50">
-            <svg className="h-5 w-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-50 dark:bg-cyan-500/10">
+            <svg className="h-5 w-5 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
           <p className="text-2xl font-bold text-stone-900 dark:text-stone-100 sm:text-3xl">
             {totalChapters.toLocaleString()}
           </p>
-          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Chapters</p>
+          <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">Chapters</p>
         </div>
       </section>
 
@@ -147,24 +151,36 @@ export default function HomePage() {
           </h2>
           <Link
             href="/books"
-            className="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors"
+            className="text-sm font-medium text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
           >
             View all &rarr;
           </Link>
         </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((book) => (
             <Link
               key={book.slug}
               href={`/books/${book.slug}`}
-              className="group rounded-lg border border-stone-200 p-4 transition-all duration-200 hover:scale-[1.02] hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/10 dark:border-stone-700 dark:hover:border-indigo-500/50 dark:hover:shadow-indigo-500/20"
+              className="group rounded-lg border border-stone-200 p-4 transition-all duration-200 hover:scale-[1.02] hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 dark:border-stone-800 dark:hover:border-teal-500/30 dark:hover:shadow-teal-500/10"
             >
-              <h3 className="font-semibold text-stone-900 group-hover:text-indigo-700 dark:text-stone-100 dark:group-hover:text-indigo-400 transition-colors">
+              <h3 className="font-semibold text-stone-900 group-hover:text-teal-700 dark:text-stone-100 dark:group-hover:text-teal-400 transition-colors">
                 {book.title}
               </h3>
               <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
                 {formatAuthorName(book.author.name)}
               </p>
+              {book.subjects.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {book.subjects.slice(0, 2).map((subject) => (
+                    <span
+                      key={subject}
+                      className="rounded-full bg-teal-50 px-2 py-0.5 text-[10px] font-medium text-teal-700 dark:bg-teal-500/10 dark:text-teal-400"
+                    >
+                      {subject}
+                    </span>
+                  ))}
+                </div>
+              )}
               <p className="mt-2 text-xs text-stone-400 dark:text-stone-500">
                 {book.totalChapters} chapters &middot;{" "}
                 {book.totalWordCount.toLocaleString()} words
@@ -182,7 +198,7 @@ export default function HomePage() {
           </h2>
           <Link
             href="/subjects"
-            className="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors"
+            className="text-sm font-medium text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
           >
             All subjects &rarr;
           </Link>
@@ -192,7 +208,7 @@ export default function HomePage() {
             <Link
               key={subject.name}
               href={`/subjects/${encodeURIComponent(subject.name)}`}
-              className="flex items-center justify-between rounded-lg border border-stone-200 px-4 py-3 transition-all duration-200 hover:border-indigo-300 hover:bg-indigo-50/50 hover:shadow-sm dark:border-stone-700 dark:hover:border-indigo-500/50 dark:hover:bg-indigo-950/20"
+              className="flex items-center justify-between rounded-lg border border-stone-200 px-4 py-3 transition-all duration-200 hover:border-teal-300 hover:bg-teal-50/50 hover:shadow-sm dark:border-stone-800 dark:hover:border-teal-500/30 dark:hover:bg-teal-950/20"
             >
               <span className="font-medium text-stone-700 dark:text-stone-300">
                 {subject.name}
@@ -206,21 +222,27 @@ export default function HomePage() {
       </section>
 
       {/*search CTA*/}
-      <section className="mt-16 mb-8 overflow-hidden rounded-xl bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800 p-8 text-center dark:from-indigo-950 dark:via-purple-950 dark:to-indigo-950">
-        <h2 className="text-2xl font-bold text-white">
-          Find Your Next Read
-        </h2>
-        <p className="mx-auto mt-2 max-w-md text-indigo-200/80">
-          Search across {books.length.toLocaleString()} books and{" "}
-          {subjects.length.toLocaleString()} subjects to discover classic
-          literature.
-        </p>
-        <Link
-          href="/search"
-          className="mt-6 inline-flex items-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-indigo-900 shadow-lg transition-all hover:bg-indigo-50 hover:shadow-xl"
-        >
-          Search the Library
-        </Link>
+      <section className="mt-16 mb-8 relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 text-center dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(20,184,166,0.08),transparent_60%)]"
+          aria-hidden="true"
+        />
+        <div className="relative">
+          <h2 className="text-2xl font-bold text-white">
+            Find Your Next Read
+          </h2>
+          <p className="mx-auto mt-2 max-w-md text-slate-300">
+            Search across {books.length.toLocaleString()} books and{" "}
+            {subjects.length.toLocaleString()} subjects to discover classic
+            literature.
+          </p>
+          <Link
+            href="/search"
+            className="mt-6 inline-flex items-center rounded-lg bg-teal-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-teal-500/20 transition-all hover:bg-teal-400 hover:shadow-xl hover:shadow-teal-500/30"
+          >
+            Search the Library
+          </Link>
+        </div>
       </section>
     </>
   );

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import MobileNav from "@/components/MobileNav";
 import SearchHotkey from "@/components/SearchHotkey";
 import { SITE_NAME, SITE_URL } from "@/lib/utils";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -50,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${geistMono.variable} antialiased`}
       >
         <a
           href="#main-content"
@@ -59,11 +60,11 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <header className="relative border-b border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
+        <header className="relative border-b border-stone-200 bg-white dark:border-stone-800 dark:bg-slate-950">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <Link
               href="/"
-              className="text-xl font-bold tracking-tight text-stone-900 hover:text-indigo-600 dark:text-stone-100 dark:hover:text-indigo-400 transition-colors"
+              className="text-xl font-bold tracking-tight text-stone-900 hover:text-teal-600 dark:text-stone-100 dark:hover:text-teal-400 transition-colors"
             >
               {SITE_NAME}
             </Link>
@@ -74,7 +75,7 @@ export default function RootLayout({
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm font-medium text-stone-600 hover:text-indigo-600 dark:text-stone-400 dark:hover:text-indigo-400 transition-colors"
+                      className="text-sm font-medium text-stone-600 hover:text-teal-600 dark:text-stone-400 dark:hover:text-teal-400 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -85,14 +86,14 @@ export default function RootLayout({
 
             <MobileNav />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 opacity-80" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-500 opacity-70" aria-hidden="true" />
         </header>
 
         <main id="main-content" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           {children}
         </main>
 
-        <footer className="border-t border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
+        <footer className="border-t border-stone-200 bg-white dark:border-stone-800 dark:bg-slate-950">
           <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
               <p className="text-sm text-stone-500 dark:text-stone-400">
@@ -101,7 +102,7 @@ export default function RootLayout({
                   href="https://www.gutenberg.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-stone-700 dark:hover:text-stone-300"
+                  className="underline hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                 >
                   Project Gutenberg
                 </a>
@@ -110,17 +111,17 @@ export default function RootLayout({
               <nav aria-label="Footer navigation">
                 <ul className="flex gap-6 text-sm text-stone-500 dark:text-stone-400">
                   <li>
-                    <Link href="/books" className="hover:text-stone-700 dark:hover:text-stone-300">
+                    <Link href="/books" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
                       Browse
                     </Link>
                   </li>
                   <li>
-                    <Link href="/authors" className="hover:text-stone-700 dark:hover:text-stone-300">
+                    <Link href="/authors" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
                       Authors
                     </Link>
                   </li>
                   <li>
-                    <Link href="/subjects" className="hover:text-stone-700 dark:hover:text-stone-300">
+                    <Link href="/subjects" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
                       Subjects
                     </Link>
                   </li>

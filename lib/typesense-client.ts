@@ -70,10 +70,11 @@ function getClient(): SearchClient {
   const host = process.env.NEXT_PUBLIC_TYPESENSE_HOST ?? "localhost";
   const port = parseInt(process.env.NEXT_PUBLIC_TYPESENSE_PORT ?? "8108", 10);
   const protocol = process.env.NEXT_PUBLIC_TYPESENSE_PROTOCOL ?? "http";
+  const path = process.env.NEXT_PUBLIC_TYPESENSE_PATH ?? "";
   const apiKey = process.env.NEXT_PUBLIC_TYPESENSE_SEARCH_API_KEY ?? "";
 
   _client = new Typesense.SearchClient({
-    nodes: [{ host, port, protocol }],
+    nodes: [{ host, port, protocol, path }],
     apiKey,
     connectionTimeoutSeconds: 5,
   });
