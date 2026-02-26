@@ -239,10 +239,13 @@ export default function SearchPageClient() {
       if (query.trim()) {
         if (tab === "catalog") {
           executeBooksSearch(query);
+        } else {
+          setChapterPage(1);
+          executeChaptersSearch(query, 1);
         }
       }
     },
-    [query, executeBooksSearch]
+    [query, executeBooksSearch, executeChaptersSearch]
   );
 
   const handleChapterPageChange = useCallback(
