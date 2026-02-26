@@ -61,7 +61,7 @@ function BookResultCard({
           {result.subjects.slice(0, 4).map((subject) => (
             <span
               key={subject}
-              className="text-xs px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 dark:bg-teal-500/10 dark:text-teal-400"
+              className="text-xs px-2 py-0.5 rounded-full bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400"
             >
               {subject}
             </span>
@@ -109,7 +109,7 @@ function ChapterResultCard({
 
 function LoadingSkeleton() {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {Array.from({ length: 5 }).map((_, i) => (
         <div
           key={i}
@@ -400,7 +400,7 @@ export default function SearchPageClient() {
         ref={resultsRef}
         id="search-results"
         role="listbox"
-        className="mt-4 space-y-3"
+        className="mt-4 space-y-2"
       >
         {error && (
           <div className="text-center py-8 px-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950">
