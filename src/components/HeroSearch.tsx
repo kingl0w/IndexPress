@@ -142,7 +142,7 @@ export default function HeroSearch() {
             }}
             onKeyDown={handleKeyDown}
             placeholder="Search books, authors, subjects..."
-            className="w-full py-4 px-5 pl-12 pr-20 text-lg rounded-xl bg-white/[0.07] backdrop-blur-sm border border-white/[0.12] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/30 transition-all"
+            className="w-full py-4 px-5 pl-12 pr-20 text-lg rounded-xl bg-white/[0.07] backdrop-blur-sm border border-white/[0.12] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500/30 transition-all"
             aria-label="Search books"
             role="combobox"
             aria-expanded={showSuggestions && suggestions.length > 0}
@@ -181,7 +181,7 @@ export default function HeroSearch() {
                 onClick={() => setShowSuggestions(false)}
                 className={`flex items-center gap-3 px-4 py-3 transition-colors ${
                   i === activeSuggestion
-                    ? "bg-teal-950/30"
+                    ? "bg-amber-950/30"
                     : "hover:bg-slate-800"
                 }`}
               >
@@ -215,7 +215,7 @@ export default function HeroSearch() {
               <Link
                 href={`/search?q=${encodeURIComponent(query.trim())}`}
                 onClick={() => setShowSuggestions(false)}
-                className="flex items-center gap-3 px-4 py-3 border-t border-slate-700 text-sm text-teal-400 hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 border-t border-slate-700 text-sm text-amber-400 hover:bg-slate-800 transition-colors"
               >
                 <svg
                   className="w-4 h-4 shrink-0"

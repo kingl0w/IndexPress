@@ -40,10 +40,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const COVER_GRADIENTS = [
   "from-rose-900 to-rose-950",
   "from-blue-900 to-blue-950",
-  "from-emerald-900 to-emerald-950",
+  "from-amber-900 to-amber-950",
   "from-amber-900 to-amber-950",
   "from-violet-900 to-violet-950",
-  "from-teal-900 to-teal-950",
+  "from-yellow-900 to-yellow-950",
   "from-slate-800 to-slate-950",
   "from-indigo-900 to-indigo-950",
 ];

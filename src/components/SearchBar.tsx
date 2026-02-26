@@ -135,7 +135,7 @@ export default function SearchBar() {
           }}
           onKeyDown={handleKeyDown}
           placeholder="Search..."
-          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-stone-700 bg-slate-900 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/30"
+          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-stone-700 bg-slate-900 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/30"
           aria-label="Search books"
           role="combobox"
           aria-expanded={showSuggestions && suggestions.length > 0}
@@ -199,7 +199,7 @@ export default function SearchBar() {
                 onClick={() => setShowSuggestions(false)}
                 className={`block px-3 py-2 text-sm ${
                   i === activeSuggestion
-                    ? "bg-teal-950/30"
+                    ? "bg-amber-950/30"
                     : "hover:bg-slate-800"
                 }`}
               >

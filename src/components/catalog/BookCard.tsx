@@ -5,15 +5,15 @@ import { formatAuthorName } from "@/lib/utils";
 const COVER_PALETTES = [
   { from: "from-rose-900", to: "to-rose-950" },
   { from: "from-sky-900", to: "to-sky-950" },
-  { from: "from-emerald-900", to: "to-emerald-950" },
   { from: "from-amber-900", to: "to-amber-950" },
+  { from: "from-red-900", to: "to-red-950" },
   { from: "from-violet-900", to: "to-violet-950" },
-  { from: "from-teal-900", to: "to-teal-950" },
+  { from: "from-yellow-900", to: "to-yellow-950" },
   { from: "from-slate-800", to: "to-slate-950" },
   { from: "from-indigo-900", to: "to-indigo-950" },
   { from: "from-fuchsia-900", to: "to-fuchsia-950" },
-  { from: "from-cyan-900", to: "to-cyan-950" },
   { from: "from-orange-900", to: "to-orange-950" },
+  { from: "from-rose-800", to: "to-rose-950" },
   { from: "from-lime-900", to: "to-lime-950" },
   { from: "from-pink-900", to: "to-pink-950" },
   { from: "from-blue-900", to: "to-blue-950" },
@@ -40,7 +40,7 @@ export default function BookCard({ book }: BookCardProps) {
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group flex gap-4 rounded-lg border border-stone-800 border-l-[3px] border-l-teal-500/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-l-teal-400/60 hover:shadow-lg hover:shadow-teal-500/5 sm:flex-col sm:p-0 sm:pb-4"
+      className="group flex gap-4 rounded-lg border border-stone-800 border-l-[3px] border-l-amber-500/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-l-amber-400/60 hover:shadow-lg hover:shadow-amber-500/5 sm:flex-col sm:p-0 sm:pb-4"
     >
       {/*CSS-only book cover*/}
       <div
@@ -65,7 +65,7 @@ export default function BookCard({ book }: BookCardProps) {
 
       {/*book info*/}
       <div className="min-w-0 flex-1 sm:px-4">
-        <h3 className="line-clamp-2 font-semibold text-stone-100 group-hover:text-teal-400 transition-colors">
+        <h3 className="line-clamp-2 font-semibold text-stone-100 group-hover:text-amber-400 transition-colors">
           {book.title}
         </h3>
         <p className="mt-0.5 truncate text-sm text-stone-400">
@@ -77,7 +77,7 @@ export default function BookCard({ book }: BookCardProps) {
             {displaySubjects.map((subject) => (
               <span
                 key={subject}
-                className="rounded-full bg-stone-800 px-1.5 py-0.5 text-[10px] font-medium text-stone-400 group-hover:bg-teal-500/10 group-hover:text-teal-400 transition-colors"
+                className="rounded-full bg-stone-800 px-1.5 py-0.5 text-[10px] font-medium text-stone-400 group-hover:bg-amber-500/10 group-hover:text-amber-400 transition-colors"
               >
                 {subject}
               </span>

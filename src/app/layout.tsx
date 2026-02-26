@@ -50,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceGrotesk.variable} antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${spaceGrotesk.className} antialiased`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-stone-900 focus:px-4 focus:py-2 focus:text-white"
@@ -62,7 +62,7 @@ export default function RootLayout({
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <Link
               href="/"
-              className="text-xl font-bold tracking-tight text-stone-100 hover:text-teal-400 transition-colors"
+              className="text-xl font-bold tracking-tight text-stone-100 hover:text-amber-400 transition-colors"
             >
               {SITE_NAME}
             </Link>
@@ -84,7 +84,7 @@ export default function RootLayout({
 
             <MobileNav />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-500/80 to-transparent" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-500/80 to-transparent" aria-hidden="true" />
         </header>
 
         <main id="main-content" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
