@@ -9,18 +9,23 @@ interface Props {
   params: Promise<{ slug: string; chapter: string }>;
 }
 
+export const dynamicParams = true;
+export const revalidate = false;
+
 export async function generateStaticParams() {
   const books = getAllBooks();
   const params: { slug: string; chapter: string }[] = [];
 
+  // Pre-generate first 3 chapters of each book at build time
+  // Rest get generated and cached on first visit
   for (const meta of books) {
-    const book = getBookBySlug(meta.slug);
-    if (!book) continue;
-    for (const ch of book.chapters) {
-      params.push({ slug: meta.slug, chapter: String(ch.number) });
+    const maxPregen = Math.min(meta.totalChapters, 3);
+    for (let i = 1; i <= maxPregen; i++) {
+      params.push({ slug: meta.slug, chapter: String(i) });
     }
   }
 
+  console.log(`Pre-generating ${params.length} chapter pages (rest generated on demand)`);
   return params;
 }
 

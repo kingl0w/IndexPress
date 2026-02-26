@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
-import { getAllBooks, getBookBySlug, getAllAuthors, getAllSubjects } from "../../lib/data";
+import { getAllBooks, getAllAuthors, getAllSubjects } from "../../lib/data";
 import { SITE_URL } from "@/lib/utils";
+
 
 const URLS_PER_SITEMAP = 50000;
 
@@ -9,10 +10,8 @@ function buildAllUrls(): MetadataRoute.Sitemap {
   const authors = getAllAuthors();
   const subjects = getAllSubjects();
   const now = new Date().toISOString();
-
   const urls: MetadataRoute.Sitemap = [];
 
-  //static pages
   urls.push(
     { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
     { url: `${SITE_URL}/books`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
@@ -21,7 +20,6 @@ function buildAllUrls(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/search`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   );
 
-  //book pages
   for (const book of books) {
     urls.push({
       url: `${SITE_URL}/books/${book.slug}`,
@@ -30,21 +28,16 @@ function buildAllUrls(): MetadataRoute.Sitemap {
       priority: 0.8,
     });
 
-    //chapter pages
-    const fullBook = getBookBySlug(book.slug);
-    if (fullBook) {
-      for (const chapter of fullBook.chapters) {
-        urls.push({
-          url: `${SITE_URL}/books/${book.slug}/${chapter.number}`,
-          lastModified: now,
-          changeFrequency: "yearly",
-          priority: 0.7,
-        });
-      }
+    for (let ch = 1; ch <= book.totalChapters; ch++) {
+      urls.push({
+        url: `${SITE_URL}/books/${book.slug}/${ch}`,
+        lastModified: now,
+        changeFrequency: "yearly",
+        priority: 0.7,
+      });
     }
   }
 
-  //author pages
   for (const author of authors) {
     urls.push({
       url: `${SITE_URL}/authors/${encodeURIComponent(author)}`,
@@ -54,7 +47,6 @@ function buildAllUrls(): MetadataRoute.Sitemap {
     });
   }
 
-  //subject pages
   for (const subject of subjects) {
     urls.push({
       url: `${SITE_URL}/subjects/${encodeURIComponent(subject)}`,
