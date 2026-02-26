@@ -21,10 +21,10 @@ export default function BooksPage() {
   return (
     <section>
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
+        <h1 className="text-3xl font-bold text-stone-100">
           Browse All Books
         </h1>
-        <p className="mt-2 text-stone-600 dark:text-stone-400">
+        <p className="mt-2 text-stone-400">
           {books.length.toLocaleString()} books available to read for free.
         </p>
       </div>

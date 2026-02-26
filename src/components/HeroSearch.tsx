@@ -167,7 +167,7 @@ export default function HeroSearch() {
         <ul
           id="hero-search-suggestions"
           role="listbox"
-          className="absolute z-50 top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-700 rounded-xl shadow-2xl overflow-hidden"
+          className="absolute z-50 top-full left-0 right-0 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden"
         >
           {suggestions.map((suggestion, i) => (
             <li
@@ -181,12 +181,12 @@ export default function HeroSearch() {
                 onClick={() => setShowSuggestions(false)}
                 className={`flex items-center gap-3 px-4 py-3 transition-colors ${
                   i === activeSuggestion
-                    ? "bg-teal-50 dark:bg-teal-950/30"
-                    : "hover:bg-stone-50 dark:hover:bg-slate-800"
+                    ? "bg-teal-950/30"
+                    : "hover:bg-slate-800"
                 }`}
               >
                 <svg
-                  className="w-4 h-4 shrink-0 text-stone-400 dark:text-slate-500"
+                  className="w-4 h-4 shrink-0 text-slate-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -200,10 +200,10 @@ export default function HeroSearch() {
                   />
                 </svg>
                 <div className="min-w-0 flex-1">
-                  <span className="font-medium text-stone-900 dark:text-stone-100 truncate block">
+                  <span className="font-medium text-stone-100 truncate block">
                     {suggestion.title}
                   </span>
-                  <span className="text-sm text-stone-500 dark:text-stone-400 truncate block">
+                  <span className="text-sm text-stone-400 truncate block">
                     {formatAuthorName(suggestion.authorName)}
                   </span>
                 </div>
@@ -215,7 +215,7 @@ export default function HeroSearch() {
               <Link
                 href={`/search?q=${encodeURIComponent(query.trim())}`}
                 onClick={() => setShowSuggestions(false)}
-                className="flex items-center gap-3 px-4 py-3 border-t border-stone-200 dark:border-slate-700 text-sm text-teal-600 dark:text-teal-400 hover:bg-stone-50 dark:hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 border-t border-slate-700 text-sm text-teal-400 hover:bg-slate-800 transition-colors"
               >
                 <svg
                   className="w-4 h-4 shrink-0"

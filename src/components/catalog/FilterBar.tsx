@@ -100,7 +100,7 @@ export default function FilterBar({
             placeholder="Filter books..."
             value={currentQuery}
             onChange={(e) => updateParams({ q: e.target.value || null })}
-            className="w-full rounded-lg border border-stone-200 bg-white py-2 pl-10 pr-3 text-sm text-stone-900 placeholder:text-stone-400 focus:border-stone-400 focus:outline-none focus:ring-1 focus:ring-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-500 dark:focus:border-stone-500 dark:focus:ring-stone-500"
+            className="w-full rounded-lg border border-stone-700 bg-stone-900 py-2 pl-10 pr-3 text-sm text-stone-100 placeholder:text-stone-500 focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500"
             aria-label="Filter books by title or author"
           />
         </div>
@@ -109,7 +109,7 @@ export default function FilterBar({
         <select
           value={currentSubject}
           onChange={(e) => updateParams({ subject: e.target.value || null })}
-          className="rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700 focus:border-stone-400 focus:outline-none focus:ring-1 focus:ring-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300 dark:focus:border-stone-500 dark:focus:ring-stone-500"
+          className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-300 focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500"
           aria-label="Filter by subject"
         >
           <option value="">All Subjects</option>
@@ -124,7 +124,7 @@ export default function FilterBar({
         <div ref={authorRef} className="relative">
           <button
             onClick={() => setAuthorOpen(!authorOpen)}
-            className="flex w-full items-center justify-between gap-2 rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700 focus:border-stone-400 focus:outline-none focus:ring-1 focus:ring-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300 dark:focus:border-stone-500 dark:focus:ring-stone-500 sm:w-44"
+            className="flex w-full items-center justify-between gap-2 rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-300 focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500 sm:w-44"
             aria-expanded={authorOpen}
             aria-label="Filter by author"
           >
@@ -145,14 +145,14 @@ export default function FilterBar({
           </button>
 
           {authorOpen && (
-            <div className="absolute right-0 z-30 mt-1 max-h-64 w-64 overflow-hidden rounded-lg border border-stone-200 bg-white shadow-lg dark:border-stone-700 dark:bg-stone-900">
-              <div className="border-b border-stone-200 p-2 dark:border-stone-700">
+            <div className="absolute right-0 z-30 mt-1 max-h-64 w-64 overflow-hidden rounded-lg border border-stone-700 bg-stone-900 shadow-lg">
+              <div className="border-b border-stone-700 p-2">
                 <input
                   type="search"
                   placeholder="Search authors..."
                   value={authorSearch}
                   onChange={(e) => setAuthorSearch(e.target.value)}
-                  className="w-full rounded border border-stone-200 bg-white px-2 py-1.5 text-sm text-stone-900 placeholder:text-stone-400 focus:border-stone-400 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                  className="w-full rounded border border-stone-700 bg-stone-800 px-2 py-1.5 text-sm text-stone-100 placeholder:text-stone-500 focus:border-stone-500 focus:outline-none"
                   aria-label="Search authors"
                   autoFocus
                 />
@@ -167,8 +167,8 @@ export default function FilterBar({
                     }}
                     className={`w-full px-3 py-1.5 text-left text-sm ${
                       !currentAuthor
-                        ? "bg-stone-100 font-medium text-stone-900 dark:bg-stone-800 dark:text-stone-100"
-                        : "text-stone-600 hover:bg-stone-50 dark:text-stone-400 dark:hover:bg-stone-800"
+                        ? "bg-stone-800 font-medium text-stone-100"
+                        : "text-stone-400 hover:bg-stone-800"
                     }`}
                     role="option"
                     aria-selected={!currentAuthor}
@@ -186,8 +186,8 @@ export default function FilterBar({
                       }}
                       className={`w-full px-3 py-1.5 text-left text-sm ${
                         currentAuthor === a
-                          ? "bg-stone-100 font-medium text-stone-900 dark:bg-stone-800 dark:text-stone-100"
-                          : "text-stone-600 hover:bg-stone-50 dark:text-stone-400 dark:hover:bg-stone-800"
+                          ? "bg-stone-800 font-medium text-stone-100"
+                          : "text-stone-400 hover:bg-stone-800"
                       }`}
                       role="option"
                       aria-selected={currentAuthor === a}
@@ -205,7 +205,7 @@ export default function FilterBar({
         <select
           value={currentSort}
           onChange={(e) => updateParams({ sort: e.target.value })}
-          className="rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700 focus:border-stone-400 focus:outline-none focus:ring-1 focus:ring-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300 dark:focus:border-stone-500 dark:focus:ring-stone-500"
+          className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-300 focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500"
           aria-label="Sort books"
         >
           {SORT_OPTIONS.map((opt) => (
@@ -219,14 +219,14 @@ export default function FilterBar({
       {/*active filter chips*/}
       {activeFilters.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs text-stone-500 dark:text-stone-400">
+          <span className="text-xs text-stone-400">
             {filteredCount.toLocaleString()} result{filteredCount !== 1 ? "s" : ""}
           </span>
           {activeFilters.map((f) => (
             <button
               key={f.key}
               onClick={() => updateParams({ [f.key]: null })}
-              className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-xs text-stone-700 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
+              className="inline-flex items-center gap-1 rounded-full bg-stone-800 px-2.5 py-1 text-xs text-stone-300 hover:bg-stone-700"
               aria-label={`Remove filter: ${f.label}`}
             >
               {f.label}
@@ -240,7 +240,7 @@ export default function FilterBar({
             onClick={() => {
               router.push(pathname, { scroll: false });
             }}
-            className="text-xs text-stone-500 underline hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
+            className="text-xs text-stone-400 underline hover:text-stone-200"
           >
             Clear all
           </button>

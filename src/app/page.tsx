@@ -75,7 +75,7 @@ export default function HomePage() {
             className="absolute left-1/2 top-4 -translate-x-1/2 w-[500px] h-[200px] bg-[radial-gradient(ellipse,_rgba(20,184,166,0.18),transparent_70%)] blur-2xl pointer-events-none"
             aria-hidden="true"
           />
-          <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Classic Literature,
             <br />
             <span className="bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent">
@@ -112,40 +112,40 @@ export default function HomePage() {
       <div className="-mt-6 relative z-10 mx-4 rounded-xl bg-gradient-to-br from-teal-500/25 via-transparent to-emerald-500/25 p-[1px] shadow-lg sm:mx-8 lg:mx-16">
         <section
           aria-label="Library statistics"
-          className="grid grid-cols-3 gap-4 rounded-xl bg-white p-6 dark:bg-slate-950 sm:p-8"
+          className="grid grid-cols-3 gap-4 rounded-xl bg-slate-950 p-6 sm:p-8"
         >
           <div className="text-center">
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-teal-50 dark:bg-teal-500/10">
-              <svg className="h-5 w-5 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-teal-500/10">
+              <svg className="h-5 w-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
-            <p className="text-2xl font-bold text-stone-900 dark:text-stone-100 sm:text-3xl">
+            <p className="text-2xl font-bold text-stone-100 sm:text-3xl">
               {books.length.toLocaleString()}
             </p>
-            <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">Books</p>
+            <p className="mt-1 text-sm text-slate-400">Books</p>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-500/10">
-              <svg className="h-5 w-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10">
+              <svg className="h-5 w-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <p className="text-2xl font-bold text-stone-900 dark:text-stone-100 sm:text-3xl">
+            <p className="text-2xl font-bold text-stone-100 sm:text-3xl">
               {authors.length.toLocaleString()}
             </p>
-            <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">Authors</p>
+            <p className="mt-1 text-sm text-slate-400">Authors</p>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-50 dark:bg-cyan-500/10">
-              <svg className="h-5 w-5 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500/10">
+              <svg className="h-5 w-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <p className="text-2xl font-bold text-stone-900 dark:text-stone-100 sm:text-3xl">
+            <p className="text-2xl font-bold text-stone-100 sm:text-3xl">
               {totalChapters.toLocaleString()}
             </p>
-            <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">Chapters</p>
+            <p className="mt-1 text-sm text-slate-400">Chapters</p>
           </div>
         </section>
       </div>
@@ -153,12 +153,12 @@ export default function HomePage() {
       {/*featured books*/}
       <section className="mt-20">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-2xl font-bold text-stone-900 dark:text-stone-100">
+          <h2 className="text-2xl font-bold text-stone-100">
             Featured Books
           </h2>
           <Link
             href="/books"
-            className="text-sm font-medium text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+            className="text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors"
           >
             View all &rarr;
           </Link>
@@ -168,12 +168,12 @@ export default function HomePage() {
             <Link
               key={book.slug}
               href={`/books/${book.slug}`}
-              className="group rounded-lg border border-stone-200 border-l-[3px] border-l-teal-500/40 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-l-teal-500 dark:border-stone-800 dark:border-l-teal-500/30 dark:hover:border-l-teal-400/60 dark:hover:shadow-lg dark:hover:shadow-teal-500/5"
+              className="group rounded-lg border border-stone-800 border-l-[3px] border-l-teal-500/30 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-l-teal-400/60 hover:shadow-lg hover:shadow-teal-500/5"
             >
-              <h3 className="font-display font-semibold text-stone-900 group-hover:text-teal-700 dark:text-stone-100 dark:group-hover:text-teal-400 transition-colors">
+              <h3 className="font-semibold text-stone-100 group-hover:text-teal-400 transition-colors">
                 {book.title}
               </h3>
-              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+              <p className="mt-1 text-sm text-stone-400">
                 {formatAuthorName(book.author.name)}
               </p>
               {book.subjects.length > 0 && (
@@ -181,14 +181,14 @@ export default function HomePage() {
                   {book.subjects.slice(0, 2).map((subject) => (
                     <span
                       key={subject}
-                      className="rounded-full bg-stone-100 px-2 py-0.5 text-[10px] font-medium text-stone-500 group-hover:bg-teal-50 group-hover:text-teal-700 dark:bg-stone-800 dark:text-stone-400 dark:group-hover:bg-teal-500/10 dark:group-hover:text-teal-400 transition-colors"
+                      className="rounded-full bg-stone-800 px-2 py-0.5 text-[10px] font-medium text-stone-400 group-hover:bg-teal-500/10 group-hover:text-teal-400 transition-colors"
                     >
                       {subject}
                     </span>
                   ))}
                 </div>
               )}
-              <p className="mt-2 text-xs text-stone-400 dark:text-stone-500">
+              <p className="mt-2 text-xs text-stone-500">
                 {book.totalChapters} chapters &middot;{" "}
                 {book.totalWordCount.toLocaleString()} words
               </p>
@@ -200,12 +200,12 @@ export default function HomePage() {
       {/*subject categories*/}
       <section className="mt-20">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-2xl font-bold text-stone-900 dark:text-stone-100">
+          <h2 className="text-2xl font-bold text-stone-100">
             Browse by Subject
           </h2>
           <Link
             href="/subjects"
-            className="text-sm font-medium text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+            className="text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors"
           >
             All subjects &rarr;
           </Link>
@@ -215,12 +215,12 @@ export default function HomePage() {
             <Link
               key={subject.name}
               href={`/subjects/${encodeURIComponent(subject.name)}`}
-              className="flex items-center justify-between rounded-lg border border-stone-200 border-l-[3px] border-l-teal-500/30 px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm hover:border-l-teal-500 dark:border-stone-800 dark:border-l-teal-500/20 dark:hover:border-l-teal-400/50"
+              className="flex items-center justify-between rounded-lg border border-stone-800 border-l-[3px] border-l-teal-500/20 px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm hover:border-l-teal-400/50"
             >
-              <span className="font-medium text-stone-700 dark:text-stone-300">
+              <span className="font-medium text-stone-300">
                 {subject.name}
               </span>
-              <span className="text-sm text-stone-400 dark:text-stone-500">
+              <span className="text-sm text-stone-500">
                 {subject.bookCount} {subject.bookCount === 1 ? "book" : "books"}
               </span>
             </Link>
@@ -229,13 +229,13 @@ export default function HomePage() {
       </section>
 
       {/*search CTA*/}
-      <section className="mt-20 mb-8 relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 text-center dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+      <section className="mt-20 mb-8 relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-8 text-center">
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(20,184,166,0.08),transparent_60%)]"
           aria-hidden="true"
         />
         <div className="relative">
-          <h2 className="font-display text-2xl font-bold text-white">
+          <h2 className="text-2xl font-bold text-white">
             Find Your Next Read
           </h2>
           <p className="mx-auto mt-2 max-w-md text-slate-300">

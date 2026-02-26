@@ -140,25 +140,25 @@ export default async function BookPage({ params }: Props) {
 
           {/*book info*/}
           <div className="min-w-0 flex-1">
-            <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100 sm:text-4xl">
+            <h1 className="text-3xl font-bold text-stone-100 sm:text-4xl">
               {book.title}
             </h1>
-            <p className="mt-2 text-lg text-stone-600 dark:text-stone-400">
+            <p className="mt-2 text-lg text-stone-400">
               by{" "}
               <Link
                 href={`/authors/${encodeURIComponent(book.author.name)}`}
-                className="underline hover:text-stone-900 dark:hover:text-stone-200"
+                className="underline hover:text-stone-200"
               >
                 {author}
               </Link>
               {book.author.birthYear && (
-                <span className="text-stone-400 dark:text-stone-500">
+                <span className="text-stone-500">
                   {" "}({book.author.birthYear}&ndash;{book.author.deathYear ?? "?"})
                 </span>
               )}
             </p>
 
-            <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-500 dark:text-stone-400">
+            <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-400">
               <div>
                 <dt className="sr-only">Chapters</dt>
                 <dd>{book.totalChapters} chapters</dd>
@@ -190,7 +190,7 @@ export default async function BookPage({ params }: Props) {
                     <Link
                       key={subject}
                       href={`/subjects/${encodeURIComponent(subject)}`}
-                      className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:hover:bg-stone-700"
+                      className="rounded-full bg-stone-800 px-3 py-1 text-xs text-stone-400 hover:bg-stone-700"
                     >
                       {subject}
                     </Link>
@@ -202,7 +202,7 @@ export default async function BookPage({ params }: Props) {
             <div className="mt-6">
               <Link
                 href={`/books/${slug}/1`}
-                className="inline-flex items-center rounded-lg bg-stone-900 px-6 py-3 text-sm font-medium text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
+                className="inline-flex items-center rounded-lg bg-stone-100 px-6 py-3 text-sm font-medium text-stone-900 hover:bg-stone-300"
               >
                 Start Reading
               </Link>
@@ -212,7 +212,7 @@ export default async function BookPage({ params }: Props) {
 
         {/*table of contents*/}
         <section className="mt-12">
-          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
+          <h2 className="text-xl font-bold text-stone-100">
             Table of Contents
           </h2>
           <nav aria-label="Table of contents" className="mt-4">
@@ -221,15 +221,15 @@ export default async function BookPage({ params }: Props) {
                 <li key={chapter.number}>
                   <Link
                     href={`/books/${slug}/${chapter.number}`}
-                    className="flex items-center justify-between rounded px-3 py-2.5 text-stone-700 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+                    className="flex items-center justify-between rounded px-3 py-2.5 text-stone-300 hover:bg-stone-800"
                   >
                     <span className="flex items-center gap-3">
-                      <span className="text-xs tabular-nums text-stone-400 dark:text-stone-500">
+                      <span className="text-xs tabular-nums text-stone-500">
                         {String(chapter.number).padStart(2, "0")}
                       </span>
                       <span>{chapter.title}</span>
                     </span>
-                    <span className="text-xs text-stone-400 dark:text-stone-500">
+                    <span className="text-xs text-stone-500">
                       {chapter.wordCount.toLocaleString()} words
                     </span>
                   </Link>
@@ -243,18 +243,18 @@ export default async function BookPage({ params }: Props) {
         {(prev || next) && (
           <nav
             aria-label="Browse more books"
-            className="mt-12 grid gap-4 border-t border-stone-200 pt-8 dark:border-stone-700 sm:grid-cols-2"
+            className="mt-12 grid gap-4 border-t border-stone-700 pt-8 sm:grid-cols-2"
           >
             {prev ? (
               <Link
                 href={`/books/${prev.slug}`}
-                className="group rounded-lg border border-stone-200 p-4 transition-colors hover:border-stone-400 hover:bg-stone-50 dark:border-stone-700 dark:hover:border-stone-500 dark:hover:bg-stone-800"
+                className="group rounded-lg border border-stone-700 p-4 transition-colors hover:border-stone-500 hover:bg-stone-800"
               >
-                <p className="text-xs text-stone-400 dark:text-stone-500">&larr; Previous</p>
-                <p className="mt-1 font-medium text-stone-900 group-hover:text-stone-700 dark:text-stone-100 dark:group-hover:text-stone-300">
+                <p className="text-xs text-stone-500">&larr; Previous</p>
+                <p className="mt-1 font-medium text-stone-100 group-hover:text-stone-300">
                   {prev.title}
                 </p>
-                <p className="text-sm text-stone-500 dark:text-stone-400">
+                <p className="text-sm text-stone-400">
                   {formatAuthorName(prev.author.name)}
                 </p>
               </Link>
@@ -264,13 +264,13 @@ export default async function BookPage({ params }: Props) {
             {next ? (
               <Link
                 href={`/books/${next.slug}`}
-                className="group rounded-lg border border-stone-200 p-4 text-right transition-colors hover:border-stone-400 hover:bg-stone-50 dark:border-stone-700 dark:hover:border-stone-500 dark:hover:bg-stone-800"
+                className="group rounded-lg border border-stone-700 p-4 text-right transition-colors hover:border-stone-500 hover:bg-stone-800"
               >
-                <p className="text-xs text-stone-400 dark:text-stone-500">Next &rarr;</p>
-                <p className="mt-1 font-medium text-stone-900 group-hover:text-stone-700 dark:text-stone-100 dark:group-hover:text-stone-300">
+                <p className="text-xs text-stone-500">Next &rarr;</p>
+                <p className="mt-1 font-medium text-stone-100 group-hover:text-stone-300">
                   {next.title}
                 </p>
-                <p className="text-sm text-stone-500 dark:text-stone-400">
+                <p className="text-sm text-stone-400">
                   {formatAuthorName(next.author.name)}
                 </p>
               </Link>

@@ -12,7 +12,7 @@ export default function BookGrid({
 }: BookGridProps) {
   if (books.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-stone-300 py-16 dark:border-stone-600">
+      <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-stone-600 py-16">
         <svg
           width="48"
           height="48"
@@ -20,13 +20,13 @@ export default function BookGrid({
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
-          className="text-stone-300 dark:text-stone-600"
+          className="text-stone-600"
           aria-hidden="true"
         >
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        <p className="mt-4 text-stone-500 dark:text-stone-400">{emptyMessage}</p>
+        <p className="mt-4 text-stone-400">{emptyMessage}</p>
       </div>
     );
   }

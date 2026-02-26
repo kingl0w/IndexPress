@@ -39,10 +39,10 @@ export default function AuthorsPage() {
   return (
     <section>
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
+        <h1 className="text-3xl font-bold text-stone-100">
           Authors
         </h1>
-        <p className="mt-2 text-stone-600 dark:text-stone-400">
+        <p className="mt-2 text-stone-400">
           {authors.length.toLocaleString()} authors in the library.
         </p>
       </div>
@@ -56,7 +56,7 @@ export default function AuthorsPage() {
           <a
             key={letter}
             href={`#letter-${letter}`}
-            className="flex h-8 w-8 items-center justify-center rounded text-sm font-medium text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
+            className="flex h-8 w-8 items-center justify-center rounded text-sm font-medium text-stone-400 hover:bg-stone-800"
           >
             {letter}
           </a>
@@ -69,7 +69,7 @@ export default function AuthorsPage() {
           const group = grouped.get(letter)!;
           return (
             <section key={letter} id={`letter-${letter}`}>
-              <h2 className="mb-3 border-b border-stone-200 pb-2 text-lg font-bold text-stone-900 dark:border-stone-700 dark:text-stone-100">
+              <h2 className="mb-3 border-b border-stone-700 pb-2 text-lg font-bold text-stone-100">
                 {letter}
               </h2>
               <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -77,12 +77,12 @@ export default function AuthorsPage() {
                   <Link
                     key={author}
                     href={`/authors/${encodeURIComponent(author)}`}
-                    className="flex items-center justify-between rounded-lg border border-stone-200 px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 dark:border-stone-700 dark:hover:border-stone-600 dark:hover:bg-stone-800"
+                    className="flex items-center justify-between rounded-lg border border-stone-700 px-4 py-3 transition-colors hover:border-stone-600 hover:bg-stone-800"
                   >
-                    <span className="font-medium text-stone-700 dark:text-stone-300">
+                    <span className="font-medium text-stone-300">
                       {formatAuthorName(author)}
                     </span>
-                    <span className="ml-2 shrink-0 rounded-full bg-stone-100 px-2 py-0.5 text-xs tabular-nums text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+                    <span className="ml-2 shrink-0 rounded-full bg-stone-800 px-2 py-0.5 text-xs tabular-nums text-stone-400">
                       {authorCounts.get(author) ?? 0}
                     </span>
                   </Link>

@@ -92,10 +92,10 @@ export default async function SubjectPage({ params }: Props) {
       />
 
       <section>
-        <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
+        <h1 className="text-3xl font-bold text-stone-100">
           {subject}
         </h1>
-        <p className="mt-2 text-stone-600 dark:text-stone-400">
+        <p className="mt-2 text-stone-400">
           {sorted.length} {sorted.length === 1 ? "book" : "books"} in this
           subject
         </p>
@@ -107,7 +107,7 @@ export default async function SubjectPage({ params }: Props) {
         <div className="mt-8">
           <Link
             href="/subjects"
-            className="text-sm text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
+            className="text-sm text-stone-400 hover:text-stone-200"
           >
             &larr; All Subjects
           </Link>

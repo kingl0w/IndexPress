@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function SearchPage() {
   return (
     <section className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100 mb-6">
+      <h1 className="text-3xl font-bold text-stone-100 mb-6">
         Search
       </h1>
       <Suspense fallback={<SearchFallback />}>
@@ -29,10 +29,10 @@ export default function SearchPage() {
 function SearchFallback() {
   return (
     <div className="animate-pulse">
-      <div className="h-12 bg-stone-200 dark:bg-stone-700 rounded-lg" />
-      <div className="flex gap-4 mt-4 border-b border-stone-200 dark:border-stone-700 pb-2">
-        <div className="h-4 bg-stone-200 dark:bg-stone-700 rounded w-28" />
-        <div className="h-4 bg-stone-200 dark:bg-stone-700 rounded w-20" />
+      <div className="h-12 bg-stone-700 rounded-lg" />
+      <div className="flex gap-4 mt-4 border-b border-stone-700 pb-2">
+        <div className="h-4 bg-stone-700 rounded w-28" />
+        <div className="h-4 bg-stone-700 rounded w-20" />
       </div>
     </div>
   );

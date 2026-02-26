@@ -135,7 +135,7 @@ export default function SearchBar() {
           }}
           onKeyDown={handleKeyDown}
           placeholder="Search..."
-          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-slate-900 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/30"
+          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-stone-700 bg-slate-900 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/30"
           aria-label="Search books"
           role="combobox"
           aria-expanded={showSuggestions && suggestions.length > 0}
@@ -148,7 +148,7 @@ export default function SearchBar() {
           autoComplete="off"
         />
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs text-stone-400 border border-stone-300 dark:border-stone-700 rounded font-mono">
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs text-stone-400 border border-stone-700 rounded font-mono">
             {isMac ? "\u2318" : "Ctrl+"}K
           </kbd>
         </div>
@@ -160,7 +160,7 @@ export default function SearchBar() {
               setSuggestions([]);
               setShowSuggestions(false);
             }}
-            className="absolute inset-y-0 right-12 flex items-center text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+            className="absolute inset-y-0 right-12 flex items-center text-stone-400 hover:text-stone-300"
             aria-label="Clear search"
           >
             <svg
@@ -185,7 +185,7 @@ export default function SearchBar() {
         <ul
           id="search-suggestions"
           role="listbox"
-          className="absolute z-50 top-full left-0 right-0 mt-1 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-700 rounded-lg shadow-lg overflow-hidden"
+          className="absolute z-50 top-full left-0 right-0 mt-1 bg-slate-900 border border-slate-700 rounded-lg shadow-lg overflow-hidden"
         >
           {suggestions.map((suggestion, i) => (
             <li
@@ -199,14 +199,14 @@ export default function SearchBar() {
                 onClick={() => setShowSuggestions(false)}
                 className={`block px-3 py-2 text-sm ${
                   i === activeSuggestion
-                    ? "bg-teal-50 dark:bg-teal-950/30"
-                    : "hover:bg-stone-50 dark:hover:bg-slate-800"
+                    ? "bg-teal-950/30"
+                    : "hover:bg-slate-800"
                 }`}
               >
-                <span className="font-medium text-stone-900 dark:text-stone-100">
+                <span className="font-medium text-stone-100">
                   {suggestion.title}
                 </span>
-                <span className="text-stone-500 dark:text-stone-400 ml-2">
+                <span className="text-stone-400 ml-2">
                   {suggestion.authorName}
                 </span>
               </Link>

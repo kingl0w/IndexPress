@@ -40,7 +40,7 @@ export default function BookCard({ book }: BookCardProps) {
   return (
     <Link
       href={`/books/${book.slug}`}
-      className="group flex gap-4 rounded-lg border border-stone-200 border-l-[3px] border-l-teal-500/40 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-l-teal-500 dark:border-stone-800 dark:border-l-teal-500/30 dark:hover:border-l-teal-400/60 dark:hover:shadow-lg dark:hover:shadow-teal-500/5 sm:flex-col sm:p-0 sm:pb-4"
+      className="group flex gap-4 rounded-lg border border-stone-800 border-l-[3px] border-l-teal-500/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-l-teal-400/60 hover:shadow-lg hover:shadow-teal-500/5 sm:flex-col sm:p-0 sm:pb-4"
     >
       {/*CSS-only book cover*/}
       <div
@@ -65,10 +65,10 @@ export default function BookCard({ book }: BookCardProps) {
 
       {/*book info*/}
       <div className="min-w-0 flex-1 sm:px-4">
-        <h3 className="font-display line-clamp-2 font-semibold text-stone-900 group-hover:text-teal-700 dark:text-stone-100 dark:group-hover:text-teal-400 transition-colors">
+        <h3 className="line-clamp-2 font-semibold text-stone-100 group-hover:text-teal-400 transition-colors">
           {book.title}
         </h3>
-        <p className="mt-0.5 truncate text-sm text-stone-500 dark:text-stone-400">
+        <p className="mt-0.5 truncate text-sm text-stone-400">
           {author}
         </p>
 
@@ -77,7 +77,7 @@ export default function BookCard({ book }: BookCardProps) {
             {displaySubjects.map((subject) => (
               <span
                 key={subject}
-                className="rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] font-medium text-stone-500 group-hover:bg-teal-50 group-hover:text-teal-700 dark:bg-stone-800 dark:text-stone-400 dark:group-hover:bg-teal-500/10 dark:group-hover:text-teal-400 transition-colors"
+                className="rounded-full bg-stone-800 px-1.5 py-0.5 text-[10px] font-medium text-stone-400 group-hover:bg-teal-500/10 group-hover:text-teal-400 transition-colors"
               >
                 {subject}
               </span>
@@ -85,7 +85,7 @@ export default function BookCard({ book }: BookCardProps) {
           </div>
         )}
 
-        <p className="mt-2 text-xs text-stone-400 dark:text-stone-500">
+        <p className="mt-2 text-xs text-stone-500">
           {book.totalChapters} ch &middot; {book.totalWordCount.toLocaleString()} words
         </p>
       </div>

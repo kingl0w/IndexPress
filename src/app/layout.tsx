@@ -1,25 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import { Geist_Mono } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import MobileNav from "@/components/MobileNav";
 import SearchHotkey from "@/components/SearchHotkey";
 import { SITE_NAME, SITE_URL } from "@/lib/utils";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -30,6 +20,11 @@ export const metadata: Metadata = {
   },
   description:
     "Read thousands of free classic books on IndexPress. Browse by author, subject, or search the full catalog.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -55,9 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} ${playfair.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${spaceGrotesk.variable} antialiased`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-stone-900 focus:px-4 focus:py-2 focus:text-white"
@@ -65,11 +58,11 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <header className="relative border-b border-stone-200 bg-white dark:border-stone-800 dark:bg-slate-950">
+        <header className="relative border-b border-stone-800 bg-slate-950">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <Link
               href="/"
-              className="font-display text-xl font-bold tracking-tight text-stone-900 hover:text-teal-600 dark:text-stone-100 dark:hover:text-teal-400 transition-colors"
+              className="text-xl font-bold tracking-tight text-stone-100 hover:text-teal-400 transition-colors"
             >
               {SITE_NAME}
             </Link>
@@ -80,7 +73,7 @@ export default function RootLayout({
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 transition-colors"
+                      className="text-sm font-medium text-stone-400 hover:text-stone-200 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -98,35 +91,35 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="border-t border-stone-200 bg-white dark:border-stone-800 dark:bg-slate-950">
+        <footer className="border-t border-stone-800 bg-slate-950">
           <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-              <p className="text-sm text-stone-500 dark:text-stone-400">
+              <p className="text-sm text-stone-400">
                 Books sourced from{" "}
                 <a
                   href="https://www.gutenberg.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
+                  className="underline hover:text-stone-200 transition-colors"
                 >
                   Project Gutenberg
                 </a>
                 . Not affiliated with or endorsed by Project Gutenberg.
               </p>
               <nav aria-label="Footer navigation">
-                <ul className="flex gap-6 text-sm text-stone-500 dark:text-stone-400">
+                <ul className="flex gap-6 text-sm text-stone-400">
                   <li>
-                    <Link href="/books" className="hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
+                    <Link href="/books" className="hover:text-stone-200 transition-colors">
                       Browse
                     </Link>
                   </li>
                   <li>
-                    <Link href="/authors" className="hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
+                    <Link href="/authors" className="hover:text-stone-200 transition-colors">
                       Authors
                     </Link>
                   </li>
                   <li>
-                    <Link href="/subjects" className="hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
+                    <Link href="/subjects" className="hover:text-stone-200 transition-colors">
                       Subjects
                     </Link>
                   </li>

@@ -49,7 +49,7 @@ export default function Pagination({
 
   return (
     <nav aria-label="Pagination" className="mt-8 flex flex-col items-center gap-4">
-      <p className="text-sm text-stone-500 dark:text-stone-400">
+      <p className="text-sm text-stone-400">
         Showing {start}&ndash;{end} of {totalItems.toLocaleString()} books
       </p>
 
@@ -58,13 +58,13 @@ export default function Pagination({
         {currentPage > 1 ? (
           <Link
             href={buildHref(currentPage - 1)}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-stone-400 hover:bg-stone-800"
             aria-label="Previous page"
           >
             &larr; Prev
           </Link>
         ) : (
-          <span className="rounded-lg px-3 py-2 text-sm text-stone-300 dark:text-stone-600">
+          <span className="rounded-lg px-3 py-2 text-sm text-stone-600">
             &larr; Prev
           </span>
         )}
@@ -74,7 +74,7 @@ export default function Pagination({
           page === "ellipsis" ? (
             <span
               key={`ellipsis-${i}`}
-              className="px-2 text-stone-400 dark:text-stone-500"
+              className="px-2 text-stone-500"
               aria-hidden="true"
             >
               &hellip;
@@ -86,8 +86,8 @@ export default function Pagination({
               aria-current={page === currentPage ? "page" : undefined}
               className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                 page === currentPage
-                  ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
-                  : "text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
+                  ? "bg-stone-100 text-stone-900"
+                  : "text-stone-400 hover:bg-stone-800"
               }`}
             >
               {page}
@@ -99,13 +99,13 @@ export default function Pagination({
         {currentPage < totalPages ? (
           <Link
             href={buildHref(currentPage + 1)}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-stone-400 hover:bg-stone-800"
             aria-label="Next page"
           >
             Next &rarr;
           </Link>
         ) : (
-          <span className="rounded-lg px-3 py-2 text-sm text-stone-300 dark:text-stone-600">
+          <span className="rounded-lg px-3 py-2 text-sm text-stone-600">
             Next &rarr;
           </span>
         )}

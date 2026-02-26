@@ -31,7 +31,7 @@ export default function MobileNav() {
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-label={open ? "Close menu" : "Open menu"}
-        className="p-2 text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100"
+        className="p-2 text-stone-300 hover:text-stone-100"
       >
         {open ? (
           <svg
@@ -67,7 +67,7 @@ export default function MobileNav() {
       {open && (
         <nav
           aria-label="Mobile navigation"
-          className="absolute left-0 right-0 top-full z-50 border-b border-stone-200 bg-white shadow-lg dark:border-stone-700 dark:bg-stone-900"
+          className="absolute left-0 right-0 top-full z-50 border-b border-stone-700 bg-stone-900 shadow-lg"
         >
           <ul className="flex flex-col px-6 py-4">
             {NAV_LINKS.map((link) => (
@@ -75,7 +75,7 @@ export default function MobileNav() {
                 <Link
                   href={link.href}
                   onClick={close}
-                  className="block py-3 text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100"
+                  className="block py-3 text-stone-300 hover:text-stone-100"
                 >
                   {link.label}
                 </Link>

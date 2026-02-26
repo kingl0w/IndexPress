@@ -53,10 +53,10 @@ export default function SubjectsPage() {
   return (
     <section>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
+        <h1 className="text-3xl font-bold text-stone-100">
           Subjects
         </h1>
-        <p className="mt-2 text-stone-600 dark:text-stone-400">
+        <p className="mt-2 text-stone-400">
           {subjects.length.toLocaleString()} subjects across the library.
         </p>
       </div>
@@ -71,12 +71,12 @@ export default function SubjectsPage() {
             <Link
               key={subject}
               href={`/subjects/${encodeURIComponent(subject)}`}
-              className={`group flex items-center justify-between rounded-lg border border-stone-200 border-l-4 ${colorClass} px-4 py-3 transition-colors hover:border-stone-300 hover:bg-stone-50 dark:border-stone-700 dark:hover:border-stone-600 dark:hover:bg-stone-800`}
+              className={`group flex items-center justify-between rounded-lg border border-stone-700 border-l-4 ${colorClass} px-4 py-3 transition-colors hover:border-stone-600 hover:bg-stone-800`}
             >
-              <span className="font-medium text-stone-700 group-hover:text-stone-900 dark:text-stone-300 dark:group-hover:text-stone-100">
+              <span className="font-medium text-stone-300 group-hover:text-stone-100">
                 {subject}
               </span>
-              <span className="ml-2 shrink-0 rounded-full bg-stone-100 px-2 py-0.5 text-xs tabular-nums text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+              <span className="ml-2 shrink-0 rounded-full bg-stone-800 px-2 py-0.5 text-xs tabular-nums text-stone-400">
                 {count}
               </span>
             </Link>
