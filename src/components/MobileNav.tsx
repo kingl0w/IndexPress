@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 
 const NAV_LINKS = [
@@ -13,25 +13,62 @@ const NAV_LINKS = [
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
-  const close = useCallback(() => setOpen(false), []);
+  const close = useCallback(() => {
+    setOpen(false);
+    buttonRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, close]);
+
+  // Focus the first link when the menu opens
+  useEffect(() => {
+    if (!open || !navRef.current) return;
+    const firstLink = navRef.current.querySelector<HTMLAnchorElement>("a");
+    firstLink?.focus();
   }, [open]);
+
+  // Focus trap within the nav
+  const handleNavKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key !== "Tab" || !navRef.current) return;
+      const focusableEls = navRef.current.querySelectorAll<HTMLElement>("a, button");
+      if (focusableEls.length === 0) return;
+      const first = focusableEls[0];
+      const last = focusableEls[focusableEls.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    },
+    []
+  );
 
   return (
     <div className="md:hidden">
       <button
+        ref={buttonRef}
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-label={open ? "Close menu" : "Open menu"}
-        className="p-2 text-stone-300 hover:text-stone-100"
+        className="p-2 text-[#A89B8C] hover:text-[#F5F0E8]"
       >
         {open ? (
           <svg
@@ -66,8 +103,10 @@ export default function MobileNav() {
       </button>
       {open && (
         <nav
+          ref={navRef}
           aria-label="Mobile navigation"
-          className="absolute left-0 right-0 top-full z-50 border-b border-stone-700 bg-stone-900 shadow-lg"
+          className="absolute left-0 right-0 top-full z-50 border-b border-[#2A2420] bg-ink shadow-lg"
+          onKeyDown={handleNavKeyDown}
         >
           <ul className="flex flex-col px-6 py-4">
             {NAV_LINKS.map((link) => (
@@ -75,7 +114,7 @@ export default function MobileNav() {
                 <Link
                   href={link.href}
                   onClick={close}
-                  className="block py-3 text-stone-300 hover:text-stone-100"
+                  className="block py-3 text-[#A89B8C] hover:text-[#F5F0E8]"
                 >
                   {link.label}
                 </Link>

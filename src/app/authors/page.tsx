@@ -25,7 +25,6 @@ export default function AuthorsPage() {
     );
   }
 
-  //group by first letter (raw name is "last, first")
   const grouped = new Map<string, string[]>();
   for (const author of authors) {
     const letter = author[0].toUpperCase();
@@ -39,15 +38,14 @@ export default function AuthorsPage() {
   return (
     <section>
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-stone-100">
+        <h1 className="text-3xl font-bold text-ink">
           Authors
         </h1>
-        <p className="mt-2 text-stone-400">
+        <p className="mt-2 text-secondary">
           {authors.length.toLocaleString()} authors in the library.
         </p>
       </div>
 
-      {/*letter jump navigation*/}
       <nav
         aria-label="Jump to letter"
         className="mb-8 flex flex-wrap gap-1"
@@ -56,20 +54,19 @@ export default function AuthorsPage() {
           <a
             key={letter}
             href={`#letter-${letter}`}
-            className="flex h-8 w-8 items-center justify-center rounded text-sm font-medium text-stone-400 hover:bg-stone-800"
+            className="flex h-8 w-8 items-center justify-center rounded text-sm font-medium text-secondary hover:bg-surface"
           >
             {letter}
           </a>
         ))}
       </nav>
 
-      {/*authors grouped by letter*/}
       <div className="space-y-10">
         {letters.map((letter) => {
           const group = grouped.get(letter)!;
           return (
             <section key={letter} id={`letter-${letter}`}>
-              <h2 className="mb-3 border-b border-stone-700 pb-2 text-lg font-bold text-stone-100">
+              <h2 className="mb-3 border-b border-border pb-2 text-lg font-bold text-ink">
                 {letter}
               </h2>
               <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -77,12 +74,12 @@ export default function AuthorsPage() {
                   <Link
                     key={author}
                     href={`/authors/${encodeURIComponent(author)}`}
-                    className="flex items-center justify-between rounded-lg border border-stone-700 px-4 py-3 transition-colors hover:border-stone-600 hover:bg-stone-800"
+                    className="flex items-center justify-between rounded-lg border border-border px-4 py-3 transition-colors hover:border-secondary hover:bg-surface"
                   >
-                    <span className="font-medium text-stone-300">
+                    <span className="font-medium text-ink">
                       {formatAuthorName(author)}
                     </span>
-                    <span className="ml-2 shrink-0 rounded-full bg-stone-800 px-2 py-0.5 text-xs tabular-nums text-stone-400">
+                    <span className="ml-2 shrink-0 rounded-full border border-border px-2 py-0.5 text-xs tabular-nums text-secondary">
                       {authorCounts.get(author) ?? 0}
                     </span>
                   </Link>

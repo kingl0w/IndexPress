@@ -42,7 +42,6 @@ export default async function AuthorPage({ params }: Props) {
   const name = decodeURIComponent(rawName);
   const books = getBooksByAuthor(name);
 
-  //exact match — getBooksByAuthor does partial matching
   const exactBooks = books.filter(
     (b) => b.author.name.toLowerCase() === name.toLowerCase()
   );
@@ -86,7 +85,6 @@ export default async function AuthorPage({ params }: Props) {
     ],
   };
 
-  //bio line
   const lifespan =
     authorInfo.birthYear && authorInfo.deathYear
       ? ` (${authorInfo.birthYear}\u2013${authorInfo.deathYear})`
@@ -117,17 +115,16 @@ export default async function AuthorPage({ params }: Props) {
       />
 
       <section>
-        <h1 className="text-3xl font-bold text-stone-100">
+        <h1 className="text-3xl font-bold text-ink">
           {displayName}
         </h1>
 
-        {/*bio line*/}
-        <p className="mt-2 text-stone-400">
+        <p className="mt-2 text-secondary">
           {displayName}
           {lifespan} &mdash; {matchedBooks.length}{" "}
           {matchedBooks.length === 1 ? "work" : "works"} available
           {totalWords > 0 && (
-            <span className="text-stone-500">
+            <span className="text-secondary/70">
               {" "}
               &middot; {totalWords.toLocaleString()} words total
             </span>
@@ -141,7 +138,7 @@ export default async function AuthorPage({ params }: Props) {
         <div className="mt-8">
           <Link
             href="/authors"
-            className="text-sm text-stone-400 hover:text-stone-200"
+            className="text-sm text-secondary hover:text-ink transition-colors"
           >
             &larr; All Authors
           </Link>

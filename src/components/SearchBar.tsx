@@ -41,7 +41,7 @@ export default function SearchBar() {
       if (debounceRef.current) clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(() => {
         fetchSuggestions(value);
-      }, 200);
+      }, 250);
     },
     [fetchSuggestions]
   );
@@ -111,7 +111,7 @@ export default function SearchBar() {
       <form onSubmit={handleSubmit}>
         <div className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none">
           <svg
-            className="w-4 h-4 text-stone-400"
+            className="w-4 h-4 text-[#A89B8C]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -135,7 +135,7 @@ export default function SearchBar() {
           }}
           onKeyDown={handleKeyDown}
           placeholder="Search..."
-          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-stone-700 bg-slate-900 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/30"
+          className="w-full pl-8 pr-16 py-1.5 text-sm rounded-md border border-[#2A2420] bg-[#2A2420] text-[#F5F0E8] placeholder-[#A89B8C] focus:outline-none focus:ring-2 focus:ring-[#8B2635]/40 focus:border-[#8B2635]/30"
           aria-label="Search books"
           role="combobox"
           aria-expanded={showSuggestions && suggestions.length > 0}
@@ -148,7 +148,7 @@ export default function SearchBar() {
           autoComplete="off"
         />
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs text-stone-400 border border-stone-700 rounded font-mono">
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs text-[#A89B8C] border border-[#2A2420] rounded font-mono">
             {isMac ? "\u2318" : "Ctrl+"}K
           </kbd>
         </div>
@@ -160,7 +160,7 @@ export default function SearchBar() {
               setSuggestions([]);
               setShowSuggestions(false);
             }}
-            className="absolute inset-y-0 right-12 flex items-center text-stone-400 hover:text-stone-300"
+            className="absolute inset-y-0 right-12 flex items-center px-2 text-[#A89B8C] hover:text-[#F5F0E8]"
             aria-label="Clear search"
           >
             <svg
@@ -185,28 +185,29 @@ export default function SearchBar() {
         <ul
           id="search-suggestions"
           role="listbox"
-          className="absolute z-50 top-full left-0 right-0 mt-1 bg-slate-900 border border-slate-700 rounded-lg shadow-lg overflow-hidden"
+          className="absolute z-50 top-full left-0 right-0 mt-1 bg-[#F5F0E8] border border-[#D4CCC0] rounded-lg shadow-lg overflow-hidden"
         >
           {suggestions.map((suggestion, i) => (
             <li
               key={suggestion.slug}
-              id={`suggestion-${i}`}
-              role="option"
-              aria-selected={i === activeSuggestion}
+              role="presentation"
             >
               <Link
+                id={`suggestion-${i}`}
+                role="option"
+                aria-selected={i === activeSuggestion}
                 href={`/books/${suggestion.slug}`}
                 onClick={() => setShowSuggestions(false)}
                 className={`block px-3 py-2 text-sm ${
                   i === activeSuggestion
-                    ? "bg-amber-950/30"
-                    : "hover:bg-slate-800"
+                    ? "bg-[#EDE8DC]"
+                    : "hover:bg-[#EDE8DC]"
                 }`}
               >
-                <span className="font-medium text-stone-100">
+                <span className="font-medium text-[#1C1714]">
                   {suggestion.title}
                 </span>
-                <span className="text-stone-400 ml-2">
+                <span className="text-[#6B5E52] ml-2">
                   {suggestion.authorName}
                 </span>
               </Link>

@@ -26,7 +26,6 @@ export async function generateStaticParams() {
     }
   }
 
-  console.log(`Pre-generating ${params.length} chapter pages (rest generated on demand)`);
   return params;
 }
 
@@ -125,7 +124,7 @@ export default async function ChapterPage({ params }: Props) {
         />
         <Link
           href={`/books/${slug}`}
-          className="shrink-0 text-sm text-stone-400 hover:text-amber-400 transition-colors"
+          className="shrink-0 text-sm text-secondary hover:text-ink transition-colors"
         >
           &larr; Back to Book
         </Link>

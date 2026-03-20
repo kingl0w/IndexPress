@@ -49,32 +49,30 @@ export default function Pagination({
 
   return (
     <nav aria-label="Pagination" className="mt-8 flex flex-col items-center gap-4">
-      <p className="text-sm text-stone-400">
+      <p className="text-sm text-secondary">
         Showing {start}&ndash;{end} of {totalItems.toLocaleString()} books
       </p>
 
       <div className="flex items-center gap-1">
-        {/*previous*/}
         {currentPage > 1 ? (
           <Link
             href={buildHref(currentPage - 1)}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-stone-400 hover:bg-stone-800"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-surface"
             aria-label="Previous page"
           >
             &larr; Prev
           </Link>
         ) : (
-          <span className="rounded-lg px-3 py-2 text-sm text-stone-600">
+          <span className="rounded-lg px-3 py-2 text-sm text-border">
             &larr; Prev
           </span>
         )}
 
-        {/*page numbers*/}
         {pages.map((page, i) =>
           page === "ellipsis" ? (
             <span
               key={`ellipsis-${i}`}
-              className="px-2 text-stone-500"
+              className="px-2 text-secondary"
               aria-hidden="true"
             >
               &hellip;
@@ -86,8 +84,8 @@ export default function Pagination({
               aria-current={page === currentPage ? "page" : undefined}
               className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                 page === currentPage
-                  ? "bg-stone-100 text-stone-900"
-                  : "text-stone-400 hover:bg-stone-800"
+                  ? "bg-ink text-background"
+                  : "text-secondary hover:bg-surface"
               }`}
             >
               {page}
@@ -95,17 +93,16 @@ export default function Pagination({
           )
         )}
 
-        {/*next*/}
         {currentPage < totalPages ? (
           <Link
             href={buildHref(currentPage + 1)}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-stone-400 hover:bg-stone-800"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-surface"
             aria-label="Next page"
           >
             Next &rarr;
           </Link>
         ) : (
-          <span className="rounded-lg px-3 py-2 text-sm text-stone-600">
+          <span className="rounded-lg px-3 py-2 text-sm text-border">
             Next &rarr;
           </span>
         )}

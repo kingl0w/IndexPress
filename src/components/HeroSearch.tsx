@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getSearchSuggestions } from "../../lib/typesense-client";
 import type { BookSearchResult } from "../../lib/typesense-client";
 import { formatAuthorName } from "@/lib/utils";
+import { addRecentSearch } from "@/lib/recent-searches";
 
 export default function HeroSearch() {
   const router = useRouter();
@@ -56,6 +57,7 @@ export default function HeroSearch() {
       if (activeSuggestion >= 0 && suggestions[activeSuggestion]) {
         router.push(`/books/${suggestions[activeSuggestion].slug}`);
       } else if (query.trim()) {
+        addRecentSearch(query.trim());
         router.push(`/search?q=${encodeURIComponent(query.trim())}`);
       }
     },
@@ -117,7 +119,7 @@ export default function HeroSearch() {
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
             <svg
-              className="w-5 h-5 text-slate-400"
+              className="w-5 h-5 text-[#A89B8C]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -142,7 +144,7 @@ export default function HeroSearch() {
             }}
             onKeyDown={handleKeyDown}
             placeholder="Search books, authors, subjects..."
-            className="w-full py-4 px-5 pl-12 pr-20 text-lg rounded-xl bg-white/[0.07] backdrop-blur-sm border border-white/[0.12] text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500/30 transition-all"
+            className="w-full py-4 px-5 pl-12 pr-20 text-lg rounded-xl bg-[#F5F0E8] border border-[#D4CCC0] text-[#1C1714] placeholder-[#A89B8C] focus:outline-none focus:ring-2 focus:ring-[#8B2635]/40 focus:border-[#8B2635]/30 transition-colors"
             aria-label="Search books"
             role="combobox"
             aria-expanded={showSuggestions && suggestions.length > 0}
@@ -156,7 +158,7 @@ export default function HeroSearch() {
           />
 
           <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-1 text-xs text-slate-400 border border-white/[0.12] rounded-md font-mono bg-white/[0.05]">
+            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-1 text-xs text-[#6B5E52] border border-[#D4CCC0] rounded-md font-mono bg-[#EDE8DC]">
               {isMac ? "\u2318" : "Ctrl+"}K
             </kbd>
           </div>
@@ -167,26 +169,27 @@ export default function HeroSearch() {
         <ul
           id="hero-search-suggestions"
           role="listbox"
-          className="absolute z-50 top-full left-0 right-0 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden"
+          className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#F5F0E8] border border-[#D4CCC0] rounded-xl shadow-lg overflow-hidden"
         >
           {suggestions.map((suggestion, i) => (
             <li
               key={suggestion.slug}
-              id={`hero-suggestion-${i}`}
-              role="option"
-              aria-selected={i === activeSuggestion}
+              role="presentation"
             >
               <Link
+                id={`hero-suggestion-${i}`}
+                role="option"
+                aria-selected={i === activeSuggestion}
                 href={`/books/${suggestion.slug}`}
                 onClick={() => setShowSuggestions(false)}
                 className={`flex items-center gap-3 px-4 py-3 transition-colors ${
                   i === activeSuggestion
-                    ? "bg-amber-950/30"
-                    : "hover:bg-slate-800"
+                    ? "bg-[#EDE8DC]"
+                    : "hover:bg-[#EDE8DC]"
                 }`}
               >
                 <svg
-                  className="w-4 h-4 shrink-0 text-slate-500"
+                  className="w-4 h-4 shrink-0 text-[#A89B8C]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -200,10 +203,10 @@ export default function HeroSearch() {
                   />
                 </svg>
                 <div className="min-w-0 flex-1">
-                  <span className="font-medium text-stone-100 truncate block">
+                  <span className="font-medium text-[#1C1714] truncate block">
                     {suggestion.title}
                   </span>
-                  <span className="text-sm text-stone-400 truncate block">
+                  <span className="text-sm text-[#6B5E52] truncate block">
                     {formatAuthorName(suggestion.authorName)}
                   </span>
                 </div>
@@ -215,7 +218,7 @@ export default function HeroSearch() {
               <Link
                 href={`/search?q=${encodeURIComponent(query.trim())}`}
                 onClick={() => setShowSuggestions(false)}
-                className="flex items-center gap-3 px-4 py-3 border-t border-slate-700 text-sm text-amber-400 hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 border-t border-[#D4CCC0] text-sm text-[#8B2635] hover:bg-[#EDE8DC] transition-colors"
               >
                 <svg
                   className="w-4 h-4 shrink-0"

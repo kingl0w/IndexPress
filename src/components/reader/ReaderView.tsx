@@ -32,13 +32,11 @@ interface ReaderViewProps {
 //detect ALL-CAPS words (3+ uppercase letters) and wrap in spans
 function renderParagraph(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
-  // Match sequences of 3+ uppercase letters (possibly with spaces between words)
   const regex = /\b([A-Z]{2,}(?:\s+[A-Z]{2,})*)\b/g;
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
   while ((match = regex.exec(text)) !== null) {
-    // Only wrap if the matched text is 3+ characters
     if (match[1].length >= 3) {
       if (match.index > lastIndex) {
         parts.push(text.slice(lastIndex, match.index));
@@ -75,14 +73,10 @@ function ReaderViewInner({
   const theme = (searchParams.get("theme") as Theme) || "light";
   const fontFamily = (searchParams.get("family") as FontFamily) || "serif";
 
-  //focus chapter title on mount
-  useEffect(() => {
-    titleRef.current?.focus();
-  }, [chapter.number]);
-
-  //scroll to top on chapter change
+  //scroll to top and focus chapter title on chapter change
   useEffect(() => {
     window.scrollTo(0, 0);
+    titleRef.current?.focus();
   }, [chapter.number]);
 
   const paragraphs = chapter.content
@@ -104,53 +98,69 @@ function ReaderViewInner({
         {chapter.title} of {bookTitle}
       </div>
 
-      <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 sm:px-6">
-        {/*book info*/}
-        <div className="mb-6 text-center" style={{ color: "var(--reader-text-muted)" }}>
-          <p className="text-sm">{bookTitle}</p>
-          <p className="text-xs">{authorName}</p>
+      {/*reader controls — pinned toolbar*/}
+      <Suspense>
+        <ReaderControls
+          fontSize={fontSize}
+          theme={theme}
+          fontFamily={fontFamily}
+        />
+      </Suspense>
+
+      {/*reading surface*/}
+      <div className="mx-auto max-w-4xl px-4 pb-16 pt-6 sm:px-6">
+        <div className="reader-surface">
+          {/*book info*/}
+          <div className="mb-8 text-center" style={{ color: "var(--reader-text-muted)" }}>
+            <p className="text-sm font-serif">{bookTitle}</p>
+            <p className="text-xs mt-0.5">{authorName}</p>
+          </div>
+
+          {/*chapter title with ornamental rule*/}
+          <header className="mb-10 border-b pb-8 text-center" style={{ borderColor: "var(--reader-border)" }}>
+            <h1
+              ref={titleRef}
+              tabIndex={-1}
+              className="font-serif text-2xl font-bold outline-none sm:text-3xl"
+              style={{ color: "var(--reader-text)" }}
+            >
+              {chapter.title}
+            </h1>
+            <p className="mt-3 text-sm italic" style={{ color: "var(--reader-text-muted)" }}>
+              Chapter {chapter.number} of {totalChapters}
+            </p>
+          </header>
+
+          {/*chapter content*/}
+          <article ref={contentRef} className="reader-content" aria-label="Chapter content">
+            {paragraphs.map((paragraph, i) => {
+              const lines = paragraph.split("\n");
+              if (lines.length > 1) {
+                return (
+                  <p key={i}>
+                    {lines.map((line, j) => (
+                      <span key={j}>
+                        {j > 0 && <br />}
+                        {renderParagraph(line)}
+                      </span>
+                    ))}
+                  </p>
+                );
+              }
+              return <p key={i}>{renderParagraph(paragraph)}</p>;
+            })}
+          </article>
+
+          {/*word count*/}
+          <p
+            className="mt-10 text-center text-xs"
+            style={{ color: "var(--reader-text-muted)" }}
+          >
+            {chapter.wordCount.toLocaleString()} words
+          </p>
         </div>
 
-        {/*chapter title*/}
-        <h1
-          ref={titleRef}
-          tabIndex={-1}
-          className="mb-8 text-center text-2xl font-bold outline-none sm:text-3xl"
-          style={{ color: "var(--reader-text)" }}
-        >
-          {chapter.title}
-        </h1>
-
-        {/*chapter content*/}
-        <article ref={contentRef} className="reader-content" aria-label="Chapter content">
-          {paragraphs.map((paragraph, i) => {
-            //handle line breaks (poetry, etc.)
-            const lines = paragraph.split("\n");
-            if (lines.length > 1) {
-              return (
-                <p key={i}>
-                  {lines.map((line, j) => (
-                    <span key={j}>
-                      {j > 0 && <br />}
-                      {renderParagraph(line)}
-                    </span>
-                  ))}
-                </p>
-              );
-            }
-            return <p key={i}>{renderParagraph(paragraph)}</p>;
-          })}
-        </article>
-
-        {/*word count*/}
-        <p
-          className="mt-8 text-center text-xs"
-          style={{ color: "var(--reader-text-muted)" }}
-        >
-          {chapter.wordCount.toLocaleString()} words
-        </p>
-
-        {/*chapter navigation*/}
+        {/*chapter navigation — page-turn feel*/}
         <ChapterNav
           bookSlug={bookSlug}
           currentChapter={chapter.number}
@@ -160,15 +170,6 @@ function ReaderViewInner({
           nextChapter={nextChapter}
         />
       </div>
-
-      {/*reader controls*/}
-      <Suspense>
-        <ReaderControls
-          fontSize={fontSize}
-          theme={theme}
-          fontFamily={fontFamily}
-        />
-      </Suspense>
     </div>
   );
 }

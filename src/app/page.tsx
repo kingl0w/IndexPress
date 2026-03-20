@@ -1,8 +1,32 @@
 import Link from "next/link";
-import { getAllBooks, getAllAuthors, getAllSubjects } from "../../lib/data";
+import { getAllBooks, getAllSubjects } from "../../lib/data";
 import { formatAuthorName, SITE_NAME, SITE_URL } from "@/lib/utils";
 import HeroSearch from "@/components/HeroSearch";
+import Epigraph from "@/components/Epigraph";
+import RecentSearches from "@/components/RecentSearches";
 import type { BookMeta } from "../../lib/types";
+
+const COVER_PALETTES = [
+  "from-rose-900 to-rose-950",
+  "from-sky-900 to-sky-950",
+  "from-red-900 to-red-950",
+  "from-violet-900 to-violet-950",
+  "from-yellow-900 to-yellow-950",
+  "from-slate-800 to-slate-950",
+  "from-indigo-900 to-indigo-950",
+  "from-fuchsia-900 to-fuchsia-950",
+  "from-orange-900 to-orange-950",
+  "from-blue-900 to-blue-950",
+  "from-stone-800 to-stone-950",
+];
+
+function coverGradient(title: string): string {
+  let hash = 0;
+  for (let i = 0; i < title.length; i++) {
+    hash = ((hash << 5) - hash + title.charCodeAt(i)) | 0;
+  }
+  return COVER_PALETTES[Math.abs(hash) % COVER_PALETTES.length];
+}
 
 function pickFeatured(books: BookMeta[], count: number): BookMeta[] {
   const sorted = [...books].sort((a, b) => a.id - b.id);
@@ -26,11 +50,11 @@ function getTopSubjects(books: BookMeta[], count: number): { name: string; bookC
 
 export default function HomePage() {
   const books = getAllBooks();
-  const authors = getAllAuthors();
   const subjects = getAllSubjects();
-  const featured = pickFeatured(books, Math.min(8, books.length));
-  const topSubjects = getTopSubjects(books, 6);
-  const totalChapters = books.reduce((sum, b) => sum + b.totalChapters, 0);
+  const featured = pickFeatured(books, Math.min(7, books.length));
+  const topSubjects = getTopSubjects(books, 8);
+
+  const [pick, ...rest] = featured;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -54,201 +78,163 @@ export default function HomePage() {
       />
 
       {/*hero*/}
-      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-6 py-16 text-center sm:px-12 sm:py-24">
-        {/*decorative glow*/}
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.12),transparent_50%)]"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(245,158,11,0.08),transparent_50%)]"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse,_rgba(245,158,11,0.06),transparent_70%)]"
-          aria-hidden="true"
-        />
+      <section className="rounded-2xl bg-ink px-6 py-10 text-center sm:px-12 sm:py-14">
+        {/*epigraph — random on each visit*/}
+        <Epigraph />
 
-        <div className="relative">
-          {/*radial glow behind heading*/}
-          <div
-            className="absolute left-1/2 top-4 -translate-x-1/2 w-[500px] h-[200px] bg-[radial-gradient(ellipse,_rgba(245,158,11,0.18),transparent_70%)] blur-2xl pointer-events-none"
-            aria-hidden="true"
-          />
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Classic Literature,
-            <br />
-            <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 bg-clip-text text-transparent">
-              Free &amp; Open
-            </span>
+        {/*title block — classic title page rules*/}
+        <div className="mx-auto mt-6 max-w-2xl border-t border-b border-[#3A3330] py-6">
+          <h1 className="font-serif text-5xl font-bold tracking-tight text-[#F5F0E8] sm:text-6xl md:text-7xl">
+            Classic Literature
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
-            {totalChapters.toLocaleString()}+ chapters of free classic literature.
-            Read online, no sign-up required.
+          <p className="mt-1 font-serif text-3xl font-normal text-[#D4CCC0] sm:text-4xl md:text-5xl">
+            Free &amp; Open
           </p>
-
-          <div className="mt-8">
-            <HeroSearch />
-          </div>
-
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/books"
-              className="inline-flex items-center rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-amber-500/20 transition-all hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/30"
-            >
-              Browse All Books
-            </Link>
-            <Link
-              href="/search"
-              className="inline-flex items-center rounded-lg border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-200 transition-all hover:border-amber-500/40 hover:text-amber-300 hover:bg-white/[0.03]"
-            >
-              Search the Catalog
-            </Link>
-          </div>
         </div>
+
+        <p className="mx-auto mt-5 max-w-md text-[#A89B8C]">
+          {books.length.toLocaleString()} works. Every word free.
+        </p>
+
+        <div className="mt-6">
+          <HeroSearch />
+        </div>
+        <Link
+          href="/books"
+          className="mt-5 inline-flex items-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-[#F5F0E8] transition-colors hover:bg-[#A03040]"
+        >
+          Browse All Books
+        </Link>
       </section>
 
-      {/*stats — gradient border wrapper*/}
-      <div className="-mt-6 relative z-10 mx-4 rounded-xl bg-gradient-to-br from-amber-500/25 via-transparent to-amber-600/25 p-[1px] shadow-lg sm:mx-8 lg:mx-16">
-        <section
-          aria-label="Library statistics"
-          className="grid grid-cols-3 gap-4 rounded-xl bg-slate-950 p-6 sm:p-8"
-        >
-          <div className="text-center">
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/10">
-              <svg className="h-5 w-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <p className="text-2xl font-bold text-stone-100 sm:text-3xl">
-              {books.length.toLocaleString()}
-            </p>
-            <p className="mt-1 text-sm text-slate-400">Books</p>
-          </div>
-          <div className="text-center">
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/10">
-              <svg className="h-5 w-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-            <p className="text-2xl font-bold text-stone-100 sm:text-3xl">
-              {authors.length.toLocaleString()}
-            </p>
-            <p className="mt-1 text-sm text-slate-400">Authors</p>
-          </div>
-          <div className="text-center">
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/10">
-              <svg className="h-5 w-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <p className="text-2xl font-bold text-stone-100 sm:text-3xl">
-              {totalChapters.toLocaleString()}
-            </p>
-            <p className="mt-1 text-sm text-slate-400">Chapters</p>
-          </div>
-        </section>
-      </div>
+      {/*recent searches — client-side only, reads from localStorage*/}
+      <RecentSearches />
 
-      {/*featured books*/}
-      <section className="mt-20">
+      {/*featured books — editor's pick + grid*/}
+      <section className="mt-12">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-stone-100">
+          <h2 className="text-2xl font-bold text-ink">
             Featured Books
           </h2>
           <Link
             href="/books"
-            className="text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
+            className="text-sm font-medium text-secondary hover:text-ink transition-colors"
           >
             View all &rarr;
           </Link>
         </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((book) => (
+
+        {pick && (
+          <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1fr]">
+            {/*editor's pick — face-out book*/}
             <Link
-              key={book.slug}
-              href={`/books/${book.slug}`}
-              className="group rounded-lg border border-stone-800 border-l-[3px] border-l-amber-500/30 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-l-amber-400/60 hover:shadow-lg hover:shadow-amber-500/5"
+              href={`/books/${pick.slug}`}
+              className="group flex gap-5 rounded-lg border border-border bg-surface p-5 transition-colors hover:border-secondary sm:gap-6 sm:p-6"
             >
-              <h3 className="font-semibold text-stone-100 group-hover:text-amber-400 transition-colors">
-                {book.title}
-              </h3>
-              <p className="mt-1 text-sm text-stone-400">
-                {formatAuthorName(book.author.name)}
-              </p>
-              {book.subjects.length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {book.subjects.slice(0, 2).map((subject) => (
-                    <span
-                      key={subject}
-                      className="rounded-full bg-stone-800 px-2 py-0.5 text-[10px] font-medium text-stone-400 group-hover:bg-amber-500/10 group-hover:text-amber-400 transition-colors"
-                    >
-                      {subject}
-                    </span>
-                  ))}
+              {/*large cover*/}
+              <div
+                className={`flex aspect-[2/3] w-28 shrink-0 flex-col justify-between rounded-lg bg-gradient-to-br ${coverGradient(pick.title)} p-4 sm:w-36`}
+                aria-hidden="true"
+              >
+                <div>
+                  <p className="text-sm font-bold leading-tight text-white/90 sm:text-base">
+                    {pick.title}
+                  </p>
+                  <p className="mt-1 text-xs text-white/60">
+                    {formatAuthorName(pick.author.name)}
+                  </p>
                 </div>
-              )}
-              <p className="mt-2 text-xs text-stone-500">
-                {book.totalChapters} chapters &middot;{" "}
-                {book.totalWordCount.toLocaleString()} words
-              </p>
+                <p className="text-[9px] tracking-widest text-white/25 uppercase">
+                  IndexPress
+                </p>
+              </div>
+
+              {/*pick info*/}
+              <div className="flex min-w-0 flex-1 flex-col justify-center">
+                <p className="text-xs font-semibold uppercase tracking-wider text-ink">
+                  Editor&rsquo;s Pick
+                </p>
+                <h3 className="mt-1 text-xl font-bold text-ink group-hover:text-accent transition-colors sm:text-2xl">
+                  {pick.title}
+                </h3>
+                <p className="mt-1 text-secondary">
+                  {formatAuthorName(pick.author.name)}
+                </p>
+                {pick.subjects.length > 0 && (
+                  <p className="mt-3 text-sm text-secondary">
+                    {pick.subjects.slice(0, 3).join(" / ")}
+                  </p>
+                )}
+                <p className="mt-2 text-sm text-secondary">
+                  {pick.totalChapters} chapters &middot;{" "}
+                  {pick.totalWordCount.toLocaleString()} words
+                </p>
+              </div>
             </Link>
-          ))}
-        </div>
+
+            {/*remaining books — compact list*/}
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+              {rest.map((book) => (
+                <Link
+                  key={book.slug}
+                  href={`/books/${book.slug}`}
+                  className="group flex items-center gap-3 rounded-lg border border-border bg-surface px-4 py-3 transition-colors hover:border-secondary"
+                >
+                  {/*mini cover*/}
+                  <div
+                    className={`flex h-12 w-8 shrink-0 items-end rounded bg-gradient-to-br ${coverGradient(book.title)} p-1`}
+                    aria-hidden="true"
+                  >
+                    <p className="line-clamp-2 text-[6px] font-bold leading-tight text-white/80">
+                      {book.title}
+                    </p>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="truncate font-semibold text-ink group-hover:text-accent transition-colors">
+                      {book.title}
+                    </h3>
+                    <p className="truncate text-sm text-secondary">
+                      {formatAuthorName(book.author.name)}
+                      <span className="text-border"> &middot; </span>
+                      {book.totalChapters} ch
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
-      {/*subject categories*/}
-      <section className="mt-20">
+      {/*subjects — typographic index*/}
+      <section className="mt-20 mb-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-stone-100">
+          <h2 className="text-2xl font-bold text-ink">
             Browse by Subject
           </h2>
           <Link
             href="/subjects"
-            className="text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
+            className="text-sm font-medium text-secondary hover:text-ink transition-colors"
           >
             All subjects &rarr;
           </Link>
         </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+
+        <div className="mt-8 grid gap-x-12 gap-y-4 sm:grid-cols-2">
           {topSubjects.map((subject) => (
             <Link
               key={subject.name}
               href={`/subjects/${encodeURIComponent(subject.name)}`}
-              className="flex items-center justify-between rounded-lg border border-stone-800 border-l-[3px] border-l-amber-500/20 px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm hover:border-l-amber-400/50"
+              className="group flex items-baseline justify-between border-b border-border py-3 transition-colors hover:border-ink"
             >
-              <span className="font-medium text-stone-300">
+              <span className="text-lg font-medium text-ink">
                 {subject.name}
               </span>
-              <span className="text-sm text-stone-500">
-                {subject.bookCount} {subject.bookCount === 1 ? "book" : "books"}
+              <span className="ml-4 shrink-0 text-sm tabular-nums text-secondary">
+                {subject.bookCount}
               </span>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/*search CTA*/}
-      <section className="mt-20 mb-8 relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-8 text-center">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(245,158,11,0.08),transparent_60%)]"
-          aria-hidden="true"
-        />
-        <div className="relative">
-          <h2 className="text-2xl font-bold text-white">
-            Find Your Next Read
-          </h2>
-          <p className="mx-auto mt-2 max-w-md text-slate-300">
-            Search across {books.length.toLocaleString()} books and{" "}
-            {subjects.length.toLocaleString()} subjects to discover classic
-            literature.
-          </p>
-          <Link
-            href="/search"
-            className="mt-6 inline-flex items-center rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-amber-500/20 transition-all hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/30"
-          >
-            Search the Library
-          </Link>
         </div>
       </section>
     </>

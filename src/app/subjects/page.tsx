@@ -12,21 +12,6 @@ export const metadata: Metadata = {
   },
 };
 
-const SUBJECT_COLORS = [
-  "border-l-rose-400",
-  "border-l-sky-400",
-  "border-l-amber-400",
-  "border-l-amber-400",
-  "border-l-violet-400",
-  "border-l-yellow-400",
-  "border-l-indigo-400",
-  "border-l-fuchsia-400",
-  "border-l-orange-400",
-  "border-l-orange-400",
-  "border-l-lime-400",
-  "border-l-pink-400",
-];
-
 function hashStr(s: string): number {
   let h = 0;
   for (let i = 0; i < s.length; i++) {
@@ -53,10 +38,10 @@ export default function SubjectsPage() {
   return (
     <section>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-stone-100">
+        <h1 className="text-3xl font-bold text-ink">
           Subjects
         </h1>
-        <p className="mt-2 text-stone-400">
+        <p className="mt-2 text-secondary">
           {subjects.length.toLocaleString()} subjects across the library.
         </p>
       </div>
@@ -64,19 +49,17 @@ export default function SubjectsPage() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {sorted.map((subject) => {
           const count = subjectCounts.get(subject) ?? 0;
-          const colorClass =
-            SUBJECT_COLORS[hashStr(subject) % SUBJECT_COLORS.length];
 
           return (
             <Link
               key={subject}
               href={`/subjects/${encodeURIComponent(subject)}`}
-              className={`group flex items-center justify-between rounded-lg border border-stone-700 border-l-4 ${colorClass} px-4 py-3 transition-colors hover:border-stone-600 hover:bg-stone-800`}
+              className="group flex items-center justify-between rounded-lg border border-border bg-surface px-4 py-3 transition-colors hover:border-secondary"
             >
-              <span className="font-medium text-stone-300 group-hover:text-stone-100">
+              <span className="font-medium text-ink">
                 {subject}
               </span>
-              <span className="ml-2 shrink-0 rounded-full bg-stone-800 px-2 py-0.5 text-xs tabular-nums text-stone-400">
+              <span className="ml-2 shrink-0 rounded-full border border-border px-2 py-0.5 text-xs tabular-nums text-secondary">
                 {count}
               </span>
             </Link>

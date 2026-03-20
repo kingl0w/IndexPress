@@ -1,20 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0c0e12;
-  --foreground: #e2e8f0;
+  --background: #F5F0E8;
+  --foreground: #1C1714;
+  --surface: #EDE8DC;
+  --secondary: #6B5E52;
+  --accent: #8B2635;
+  --border: #B8AFA3;
+  --ink: #1C1714;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
   --font-sans: var(--font-space-grotesk);
+  --font-serif: var(--font-eb-garamond);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* global focus-visible indicator for links and buttons without custom focus styles */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* inputs have their own focus:ring styles, suppress the global outline */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+/* respect reduced motion preferences globally */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 /* hide native clear button on search-like text inputs */

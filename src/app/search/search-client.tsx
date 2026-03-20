@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { addRecentSearch } from "@/lib/recent-searches";
 import {
   searchBooks,
   searchChapters,
@@ -32,19 +33,19 @@ function BookResultCard({
       href={`/books/${result.slug}`}
       className={`block p-4 rounded-lg border transition-colors ${
         isActive
-          ? "border-amber-500 bg-amber-950/20"
-          : "border-stone-800 hover:border-stone-700"
+          ? "border-accent bg-accent/5"
+          : "border-border hover:border-secondary"
       }`}
       data-active={isActive}
     >
-      <h3 className="font-semibold text-lg leading-tight text-stone-100 [&>mark]:bg-amber-900/50 [&>mark]:rounded [&>mark]:px-0.5">
+      <h3 className="font-semibold text-lg leading-tight text-ink [&>mark]:bg-accent/20 [&>mark]:text-accent [&>mark]:rounded [&>mark]:px-0.5">
         {result.highlights.title ? (
           <HighlightedSnippet html={result.highlights.title} />
         ) : (
           result.title
         )}
       </h3>
-      <p className="text-sm text-stone-400 mt-1 [&>mark]:bg-amber-900/50 [&>mark]:rounded [&>mark]:px-0.5">
+      <p className="text-sm text-secondary mt-1 [&>mark]:bg-accent/20 [&>mark]:text-accent [&>mark]:rounded [&>mark]:px-0.5">
         by{" "}
         {result.highlights.authorName ? (
           <HighlightedSnippet html={result.highlights.authorName} />
@@ -52,7 +53,7 @@ function BookResultCard({
           result.authorName
         )}
       </p>
-      <p className="text-xs text-stone-500 mt-1">
+      <p className="text-xs text-secondary mt-1">
         {result.totalChapters} chapters &middot;{" "}
         {result.totalWordCount.toLocaleString()} words
       </p>
@@ -61,7 +62,7 @@ function BookResultCard({
           {result.subjects.slice(0, 4).map((subject) => (
             <span
               key={subject}
-              className="text-xs px-2 py-0.5 rounded-full bg-stone-800 text-stone-400"
+              className="text-xs px-2 py-0.5 rounded-full border border-border text-secondary"
             >
               {subject}
             </span>
@@ -84,23 +85,23 @@ function ChapterResultCard({
       href={`/books/${result.bookSlug}/${result.chapterNumber}`}
       className={`block p-4 rounded-lg border transition-colors ${
         isActive
-          ? "border-amber-500 bg-amber-950/20"
-          : "border-stone-800 hover:border-stone-700"
+          ? "border-accent bg-accent/5"
+          : "border-border hover:border-secondary"
       }`}
       data-active={isActive}
     >
       <div className="flex items-baseline gap-2">
-        <h3 className="font-semibold leading-tight text-stone-100">
+        <h3 className="font-semibold leading-tight text-ink">
           {result.bookTitle}
         </h3>
-        <span className="text-xs text-stone-400 shrink-0">
+        <span className="text-xs text-secondary shrink-0">
           {result.chapterTitle}
         </span>
       </div>
-      <p className="text-sm text-stone-400 mt-0.5">
+      <p className="text-sm text-secondary mt-0.5">
         by {result.authorName}
       </p>
-      <p className="text-sm mt-2 text-stone-300 leading-relaxed [&>mark]:bg-amber-900/50 [&>mark]:rounded [&>mark]:px-0.5">
+      <p className="text-sm mt-2 text-ink/80 leading-relaxed [&>mark]:bg-accent/20 [&>mark]:text-accent [&>mark]:rounded [&>mark]:px-0.5">
         <HighlightedSnippet html={result.snippet} />
       </p>
     </Link>
@@ -113,11 +114,11 @@ function LoadingSkeleton() {
       {Array.from({ length: 5 }).map((_, i) => (
         <div
           key={i}
-          className="p-4 rounded-lg border border-stone-800 animate-pulse"
+          className="p-4 rounded-lg border border-border animate-pulse"
         >
-          <div className="h-5 bg-stone-800 rounded w-3/4" />
-          <div className="h-4 bg-stone-800 rounded w-1/3 mt-2" />
-          <div className="h-3 bg-stone-800 rounded w-full mt-3" />
+          <div className="h-5 bg-border rounded w-3/4" />
+          <div className="h-4 bg-border rounded w-1/3 mt-2" />
+          <div className="h-3 bg-border rounded w-full mt-3" />
         </div>
       ))}
     </div>
@@ -158,6 +159,7 @@ export default function SearchPageClient() {
       setBookResults(result.hits);
       setTotalFound(result.totalFound);
       setSearchTimeMs(result.searchTimeMs);
+      if (result.hits.length > 0) addRecentSearch(q);
     } catch {
       setError("Search is temporarily unavailable");
       setBookResults([]);
@@ -180,6 +182,7 @@ export default function SearchPageClient() {
       setChapterResults(result.hits);
       setTotalFound(result.totalFound);
       setSearchTimeMs(result.searchTimeMs);
+      if (result.hits.length > 0) addRecentSearch(q);
     } catch {
       setError("Search is temporarily unavailable");
       setChapterResults([]);
@@ -217,7 +220,7 @@ export default function SearchPageClient() {
       if (activeTab === "catalog") {
         debounceRef.current = setTimeout(() => {
           executeBooksSearch(value);
-        }, 300);
+        }, 250);
       }
     },
     [activeTab, executeBooksSearch, router, searchParams]
@@ -303,11 +306,18 @@ export default function SearchPageClient() {
 
   return (
     <>
+      <div aria-live="polite" className="sr-only">
+        {!isSearching && hasQuery && currentResults.length > 0 &&
+          `${totalFound} results found`}
+        {!isSearching && hasQuery && currentResults.length === 0 &&
+          `No results found for ${query}`}
+      </div>
+
       {/*search input*/}
       <div className="relative" onKeyDown={handleKeyDown}>
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
-            className="w-5 h-5 text-stone-400"
+            className="w-5 h-5 text-secondary"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -331,19 +341,13 @@ export default function SearchPageClient() {
               ? "Search books, authors, or subjects..."
               : "Search the full text of every book... (press Enter)"
           }
-          className="w-full pl-10 pr-10 py-3 rounded-lg border border-stone-700 bg-slate-900 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/30 text-lg"
+          className="w-full pl-10 pr-10 py-3 rounded-lg border border-border bg-surface text-ink placeholder-secondary focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/30 text-lg"
           aria-label="Search"
-          role="combobox"
-          aria-expanded={hasQuery && currentResults.length > 0}
-          aria-controls="search-results"
-          aria-activedescendant={
-            activeIndex >= 0 ? `result-${activeIndex}` : undefined
-          }
         />
         {query && (
           <button
             onClick={() => handleInput("")}
-            className="absolute inset-y-0 right-0 flex items-center pr-3 text-stone-400 hover:text-stone-300"
+            className="absolute inset-y-0 right-0 flex items-center pr-3 text-secondary hover:text-ink"
             aria-label="Clear search"
           >
             <svg
@@ -366,17 +370,18 @@ export default function SearchPageClient() {
 
       {/*tabs*/}
       <div
-        className="flex gap-1 mt-4 border-b border-stone-800"
+        className="flex gap-1 mt-4 border-b border-border"
         role="tablist"
       >
         <button
           role="tab"
           aria-selected={activeTab === "catalog"}
+          aria-controls="search-results-panel"
           onClick={() => handleTabSwitch("catalog")}
           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors -mb-px ${
             activeTab === "catalog"
-              ? "border-amber-500 text-amber-400"
-              : "border-transparent text-stone-500 hover:text-stone-300"
+              ? "border-accent text-accent"
+              : "border-transparent text-secondary hover:text-ink"
           }`}
         >
           Books &amp; Authors
@@ -384,11 +389,12 @@ export default function SearchPageClient() {
         <button
           role="tab"
           aria-selected={activeTab === "fulltext"}
+          aria-controls="search-results-panel"
           onClick={() => handleTabSwitch("fulltext")}
           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors -mb-px ${
             activeTab === "fulltext"
-              ? "border-amber-500 text-amber-400"
-              : "border-transparent text-stone-500 hover:text-stone-300"
+              ? "border-accent text-accent"
+              : "border-transparent text-secondary hover:text-ink"
           }`}
         >
           Full Text
@@ -398,13 +404,14 @@ export default function SearchPageClient() {
       {/*results area*/}
       <div
         ref={resultsRef}
-        id="search-results"
-        role="listbox"
+        id="search-results-panel"
+        role="tabpanel"
+        aria-busy={isSearching}
         className="mt-4 space-y-2"
       >
         {error && (
-          <div className="text-center py-8 px-4 rounded-lg border border-red-900 bg-red-950">
-            <p className="text-red-400">{error}</p>
+          <div role="alert" className="text-center py-8 px-4 rounded-lg border border-red-300 bg-red-50">
+            <p className="text-red-700">{error}</p>
             <p className="text-sm text-red-500 mt-1">
               Please try again later
             </p>
@@ -412,7 +419,7 @@ export default function SearchPageClient() {
         )}
 
         {!error && hasQuery && !isSearching && currentResults.length > 0 && (
-          <p className="text-sm text-stone-400">
+          <p className="text-sm text-secondary">
             {totalFound.toLocaleString()} result
             {totalFound !== 1 && "s"} in {(searchTimeMs / 1000).toFixed(3)}s
           </p>
@@ -428,8 +435,6 @@ export default function SearchPageClient() {
             <div
               key={result.slug}
               id={`result-${i}`}
-              role="option"
-              aria-selected={i === activeIndex}
             >
               <BookResultCard result={result} isActive={i === activeIndex} />
             </div>
@@ -443,8 +448,6 @@ export default function SearchPageClient() {
             <div
               key={`${result.bookSlug}:${result.chapterNumber}`}
               id={`result-${i}`}
-              role="option"
-              aria-selected={i === activeIndex}
             >
               <ChapterResultCard result={result} isActive={i === activeIndex} />
             </div>
@@ -458,17 +461,17 @@ export default function SearchPageClient() {
               <button
                 onClick={() => handleChapterPageChange(chapterPage - 1)}
                 disabled={chapterPage <= 1}
-                className="px-3 py-1.5 text-sm rounded border border-stone-700 disabled:opacity-40 hover:bg-slate-800"
+                className="px-4 py-2.5 text-sm rounded border border-border disabled:opacity-40 hover:bg-surface"
               >
                 Previous
               </button>
-              <span className="text-sm text-stone-400">
+              <span className="text-sm text-secondary">
                 Page {chapterPage} of {totalChapterPages.toLocaleString()}
               </span>
               <button
                 onClick={() => handleChapterPageChange(chapterPage + 1)}
                 disabled={chapterPage >= totalChapterPages}
-                className="px-3 py-1.5 text-sm rounded border border-stone-700 disabled:opacity-40 hover:bg-slate-800"
+                className="px-4 py-2.5 text-sm rounded border border-border disabled:opacity-40 hover:bg-surface"
               >
                 Next
               </button>
@@ -477,10 +480,10 @@ export default function SearchPageClient() {
 
         {!isSearching && !error && hasQuery && currentResults.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-stone-400 text-lg">
+            <p className="text-ink text-lg">
               No results found for &ldquo;{query}&rdquo;
             </p>
-            <p className="text-stone-500 text-sm mt-2">
+            <p className="text-secondary text-sm mt-2">
               Try different keywords or check your spelling
             </p>
           </div>
@@ -493,15 +496,15 @@ export default function SearchPageClient() {
           chapterResults.length === 0 &&
           totalFound === 0 && (
             <div className="text-center py-12">
-              <p className="text-stone-500">
-                Press <kbd className="px-1.5 py-0.5 border border-stone-700 rounded text-xs font-mono">Enter</kbd> to search the full text of every book
+              <p className="text-secondary">
+                Press <kbd className="px-1.5 py-0.5 border border-border rounded text-xs font-mono">Enter</kbd> to search the full text of every book
               </p>
             </div>
           )}
 
         {!hasQuery && !isSearching && !error && (
           <div className="text-center py-12">
-            <p className="text-stone-500">
+            <p className="text-secondary">
               Start typing to search
               {activeTab === "catalog"
                 ? " books, authors, and subjects"

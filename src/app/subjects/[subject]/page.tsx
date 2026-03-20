@@ -41,7 +41,6 @@ export default async function SubjectPage({ params }: Props) {
   const subject = decodeURIComponent(rawSubject);
   const books = getBooksBySubject(subject);
 
-  //filter for exact subject match
   const exactBooks = books.filter((b) =>
     b.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
   );
@@ -92,10 +91,10 @@ export default async function SubjectPage({ params }: Props) {
       />
 
       <section>
-        <h1 className="text-3xl font-bold text-stone-100">
+        <h1 className="text-3xl font-bold text-ink">
           {subject}
         </h1>
-        <p className="mt-2 text-stone-400">
+        <p className="mt-2 text-secondary">
           {sorted.length} {sorted.length === 1 ? "book" : "books"} in this
           subject
         </p>
@@ -107,7 +106,7 @@ export default async function SubjectPage({ params }: Props) {
         <div className="mt-8">
           <Link
             href="/subjects"
-            className="text-sm text-stone-400 hover:text-stone-200"
+            className="text-sm text-secondary hover:text-ink transition-colors"
           >
             &larr; All Subjects
           </Link>
