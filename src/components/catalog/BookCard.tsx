@@ -40,7 +40,7 @@ export default function BookCard({ book }: BookCardProps) {
     >
       {/*CSS-only book cover*/}
       <div
-        className={`hidden aspect-[2/3] w-full flex-col justify-end overflow-hidden rounded-t-lg bg-gradient-to-br ${palette.from} ${palette.to} p-4 sm:flex`}
+        className={`hidden aspect-[3/4] w-full max-h-56 flex-col justify-end overflow-hidden rounded-t-lg bg-gradient-to-br ${palette.from} ${palette.to} p-4 sm:flex`}
         aria-hidden="true"
       >
         <p className="line-clamp-2 text-sm font-bold leading-snug text-white/90">

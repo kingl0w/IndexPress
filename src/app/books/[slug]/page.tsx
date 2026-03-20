@@ -145,11 +145,11 @@ export default async function BookPage({ params }: Props) {
 
       <article>
         {/*book header — cover bleeds color into the section*/}
-        <div className={`flex flex-col gap-8 rounded-lg border-l-4 ${borderColor} bg-surface p-6 sm:flex-row sm:p-8`}>
+        <div className={`flex flex-col gap-6 sm:gap-8 rounded-lg border-l-4 ${borderColor} bg-surface p-4 sm:flex-row sm:p-8`}>
           {/*CSS-only book cover*/}
           <div className="shrink-0 self-start">
             <div
-              className={`flex aspect-[2/3] w-40 flex-col justify-between rounded-lg bg-gradient-to-br ${gradientClass} p-5 sm:w-44`}
+              className={`flex aspect-[2/3] w-32 sm:w-40 md:w-44 flex-col justify-between rounded-lg bg-gradient-to-br ${gradientClass} p-4 sm:p-5`}
               aria-hidden="true"
             >
               <div>
@@ -168,10 +168,10 @@ export default async function BookPage({ params }: Props) {
 
           {/*book info*/}
           <div className="min-w-0 flex-1">
-            <h1 className="font-serif text-3xl font-bold text-ink sm:text-4xl">
+            <h1 className="font-serif text-2xl font-bold text-ink sm:text-3xl md:text-4xl">
               {book.title}
             </h1>
-            <p className="mt-2 text-lg text-secondary">
+            <p className="mt-2 text-base sm:text-lg text-secondary">
               by{" "}
               <Link
                 href={`/authors/${encodeURIComponent(book.author.name)}`}
@@ -240,7 +240,7 @@ export default async function BookPage({ params }: Props) {
 
         {/*opening hook*/}
         {openingLine && (
-          <blockquote className="mx-auto mt-12 max-w-2xl border-l-2 border-border pl-6">
+          <blockquote className="mx-auto mt-8 sm:mt-12 max-w-2xl border-l-2 border-border pl-4 sm:pl-6">
             <p className="font-serif text-lg italic leading-relaxed text-ink/80">
               &ldquo;{openingLine}&rdquo;
             </p>

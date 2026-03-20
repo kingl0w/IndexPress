@@ -113,7 +113,7 @@ export default async function ChapterPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <div className="flex items-center justify-between gap-4 mb-4">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4 mb-4">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },

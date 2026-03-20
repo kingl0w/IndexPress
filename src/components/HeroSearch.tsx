@@ -143,8 +143,8 @@ export default function HeroSearch() {
               if (suggestions.length > 0) setShowSuggestions(true);
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Search books, authors, subjects..."
-            className="w-full py-4 px-5 pl-12 pr-20 text-lg rounded-xl bg-[#F5F0E8] border border-[#D4CCC0] text-[#1C1714] placeholder-[#A89B8C] focus:outline-none focus:ring-2 focus:ring-[#8B2635]/40 focus:border-[#8B2635]/30 transition-colors"
+            placeholder="Search books, authors..."
+            className="w-full py-3 sm:py-4 px-4 sm:px-5 pl-10 sm:pl-12 pr-16 sm:pr-20 text-base sm:text-lg rounded-xl bg-[#F5F0E8] border border-[#D4CCC0] text-[#1C1714] placeholder-[#A89B8C] focus:outline-none focus:ring-2 focus:ring-[#8B2635]/40 focus:border-[#8B2635]/30 transition-colors"
             aria-label="Search books"
             role="combobox"
             aria-expanded={showSuggestions && suggestions.length > 0}
