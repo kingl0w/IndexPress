@@ -113,7 +113,7 @@ export default function HomePage() {
       <RecentSearches />
 
       {/*featured books — editor's pick + grid*/}
-      <section className="mt-10 sm:mt-12">
+      <section className="mt-10 sm:mt-12 px-4 sm:px-0">
         <div className="flex items-center justify-between">
           <h2 className="text-xl sm:text-2xl font-bold text-ink">
             Featured Books
@@ -127,15 +127,15 @@ export default function HomePage() {
         </div>
 
         {pick && (
-          <div className="mt-5 sm:mt-6 grid gap-4 lg:grid-cols-[1fr_1fr]">
+          <div className="mt-5 sm:mt-6 flex flex-col gap-4 md:grid md:grid-cols-[1fr_1fr]">
             {/*editor's pick*/}
             <Link
               href={`/books/${pick.slug}`}
-              className="group flex gap-4 sm:gap-6 rounded-lg border border-border bg-surface p-4 sm:p-6 transition-colors hover:border-secondary"
+              className="group flex flex-col sm:flex-row gap-4 sm:gap-6 rounded-lg border border-border bg-surface p-4 sm:p-6 transition-colors hover:border-secondary overflow-hidden"
             >
               {/*cover*/}
               <div
-                className={`flex aspect-[2/3] w-20 sm:w-28 md:w-36 shrink-0 flex-col justify-between rounded-lg bg-gradient-to-br ${coverGradient(pick.title)} p-3 sm:p-4`}
+                className={`flex aspect-[2/3] w-full h-40 sm:h-auto sm:w-28 md:w-36 shrink-0 flex-col justify-between rounded-lg bg-gradient-to-br ${coverGradient(pick.title)} p-3 sm:p-4`}
                 aria-hidden="true"
               >
                 <div>
@@ -180,7 +180,7 @@ export default function HomePage() {
                 <Link
                   key={book.slug}
                   href={`/books/${book.slug}`}
-                  className="group flex items-center gap-3 rounded-lg border border-border bg-surface px-3 sm:px-4 py-2.5 sm:py-3 transition-colors hover:border-secondary"
+                  className="group flex items-center gap-3 rounded-lg border border-border bg-surface px-3 sm:px-4 py-2.5 sm:py-3 transition-colors hover:border-secondary overflow-hidden"
                 >
                   {/*mini cover*/}
                   <div
