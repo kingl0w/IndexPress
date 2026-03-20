@@ -169,7 +169,7 @@ export default function HeroSearch() {
         <ul
           id="hero-search-suggestions"
           role="listbox"
-          className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#F5F0E8] border border-[#D4CCC0] rounded-xl shadow-lg overflow-hidden"
+          className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#F5F0E8] border border-[#D4CCC0] rounded-xl shadow-lg overflow-hidden text-left"
         >
           {suggestions.map((suggestion, i) => (
             <li

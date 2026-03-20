@@ -1,0 +1,7 @@
+node_modules
+.git
+data/raw-texts
+data/sample
+.env.local
+.env.production
+*.tar.gz

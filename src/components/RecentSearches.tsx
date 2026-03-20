@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { getRecentSearches, removeRecentSearch, clearRecentSearches } from "@/lib/recent-searches";
 
 export default function RecentSearches() {
-  const [searches, setSearches] = useState<string[]>([]);
-
-  useEffect(() => {
-    setSearches(getRecentSearches());
-  }, []);
+  const [searches, setSearches] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    return getRecentSearches();
+  });
 
   if (searches.length === 0) return null;
 

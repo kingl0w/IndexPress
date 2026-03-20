@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const QUOTES = [
   { text: "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.", author: "Jane Austen", work: "Pride and Prejudice" },
@@ -12,20 +12,11 @@ const QUOTES = [
   { text: "In the beginning God created the heaven and the earth.", author: "Genesis 1:1", work: "King James Bible" },
   { text: "Whether I shall turn out to be the hero of my own life, or whether that station will be held by anybody else, these pages must show.", author: "Charles Dickens", work: "David Copperfield" },
   { text: "I am an invisible man.", author: "Ralph Ellison", work: "Invisible Man" },
-  { text: "If one cannot enjoy reading a book over and over again, there is no use in reading it at all.", author: "Oscar Wilde" },
+  { text: "If one cannot enjoy reading a book over and over again, there is no use in reading it at all.", author: "Oscar Wilde", work: undefined },
 ];
 
 export default function Epigraph() {
-  const [quote, setQuote] = useState<typeof QUOTES[number] | null>(null);
-
-  useEffect(() => {
-    setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
-  }, []);
-
-  if (!quote) {
-    // Reserve space to avoid layout shift — matches the rendered height
-    return <div className="mx-auto max-w-lg h-10" />;
-  }
+  const [quote] = useState(() => QUOTES[Math.floor(Math.random() * QUOTES.length)]);
 
   return (
     <figure className="mx-auto max-w-lg">
