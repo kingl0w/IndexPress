@@ -58,7 +58,7 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <header className="border-b border-[#2A2420] bg-ink">
+        <header className="relative z-50 border-b border-[#2A2420] bg-ink">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <Link
               href="/"

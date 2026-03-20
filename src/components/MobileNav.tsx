@@ -102,26 +102,33 @@ export default function MobileNav() {
         )}
       </button>
       {open && (
-        <nav
-          ref={navRef}
-          aria-label="Mobile navigation"
-          className="absolute left-0 right-0 top-full z-50 border-b border-[#2A2420] bg-ink shadow-lg"
-          onKeyDown={handleNavKeyDown}
-        >
-          <ul className="flex flex-col px-6 py-4">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={close}
-                  className="block py-3 text-[#A89B8C] hover:text-[#F5F0E8]"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/50"
+            onClick={close}
+            aria-hidden="true"
+          />
+          <nav
+            ref={navRef}
+            aria-label="Mobile navigation"
+            className="absolute left-0 right-0 top-full z-50 border-b border-[#2A2420] bg-ink shadow-lg"
+            onKeyDown={handleNavKeyDown}
+          >
+            <ul className="flex flex-col px-6 py-4">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={close}
+                    className="block py-3 text-[#A89B8C] hover:text-[#F5F0E8]"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
       )}
     </div>
   );
